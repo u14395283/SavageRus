@@ -1,5 +1,5 @@
 \documentclass[a4paper,12pt]{article}
-\usepackage{blindtext}
+%\usepackage{blindtext}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -81,14 +81,30 @@ This is the software requirements specification for the vizARD Augmented Reality
 
 \newpage
 \section{Vision}
+EPI-USE Labs (henceforth referred to as "the client") intends for the VizARD application to be used by a large variety of mobile device users across both Android and iOS platforms. VizARD helps to simplify the analysis of numerical data through visualization, in the form of automatically generated 3D graphs.
+
+Fundamentally, the system will allow a user to take a picture of a table of numerical data which he/she may need to interpret. The application will then use OCR (Optical Character Recognition) to read the data from the picture. It will then decide on an appropriate graph for the type of data and generate a graph for the data. After the graph is generated, it will project a 3D model of the graph onto the image (or, ideally, onto a live stream of the paper) for the user to view.
+
+Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
+
+\newline
+\newline
+Typically usage will be as follows:
+\begin{itemize}
+	\item The user (possibly a businessman) finds tabular data he/she would like to analyse more easily.
+	\item The user opens the app.
+	\item Once the app is open and loaded, the user takes a picture of the table he/she would like to analyse.
+	\item The user receives a notification that the graph has been generated and the generated graph is displayed on the screen (mapped onto the paper).
+	\item The user taps on the "Share" button and is presented with several options through which he/she can share the graph.
+	\item An option is selected and an image of the graph is sent to the other user.
+\end{itemize}
 
 \newpage
 \section{Background}
 
 \newpage
 \section{Architecture Requirements}
-
-\subsection{Architectural Scope}
+In this section we discuss the software architecture requirements, including access and integration requirements, quality requirements and architectural constraints.
 
 \subsection{Access Channel Requirements}
 
