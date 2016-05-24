@@ -1,9 +1,4 @@
 \documentclass[a4paper,12pt]{article}
-<<<<<<< HEAD
-%\usepackage{blindtext}
-=======
-
->>>>>>> origin/master
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -91,8 +86,6 @@ Fundamentally, the system will allow a user to take a picture of a table of nume
 
 Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
 
-\newline
-\newline
 Typically usage will be as follows:
 \begin{itemize}
 	\item The user (possibly a businessman) finds tabular data he/she would like to analyse more easily.
@@ -120,7 +113,13 @@ Potential users could range from students, researchers, people in business, mana
 In this section we discuss the software architecture requirements, including access and integration requirements, quality requirements and architectural constraints.
 
 \subsection{Access Channel Requirements}
+The system will function as an offline application. As such there will not be any outside system with direct access to the application. There are, however, access channels for user. Specifically users will gain access to the system via two mobile device operating system:
+\begin{itemize}
+	\item Android OS
+	\item iOS
+\end{itemize}
 
+Furthermore any data that must be sent between the Operating System and the application will be done via the native APIs for each OS. On Android this will consist of the numerous Java APIs that is built into the system, and will likely be used to interact with the camera, file system, and (for sharing) the data connection. On iOS an Objective-C API suite will be used - in keeping with the native development philosophy of iOS (I say philosophy, but I mean to say that Apple forces you to code it in OC).
 \subsection{Quality Requirements}
 
 \subsubsection{Performance}
