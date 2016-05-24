@@ -3,3 +3,5 @@ RequirementsDoc.synctex.gz
 *.out
 *.aux
 Docs/Software.Requirements.Specification.and.Technology.Neutral.Process.Design.log
+*.pdf
+Docs/Software.Requirements.Specification.and.Technology.Neutral.Process.Design.synctex.gz
