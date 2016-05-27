@@ -122,17 +122,22 @@ The system will function as an offline application. As such there will not be an
 Furthermore any data that must be sent between the Operating System and the application will be done via the native APIs for each OS. On Android this will consist of the numerous Java APIs that is built into the system, and will likely be used to interact with the camera, file system, and (for sharing) the data connection. On iOS an Objective-C API suite will be used - in keeping with the native development philosophy of iOS.
 \subsection{Quality Requirements}
 
-\subsubsection{Performance}
-
-\subsubsection{Reliability}
-
-\subsubsection{Scalability}
-
-\subsubsection{Usability} 
-
-\subsubsection{Auditability}
-
-\subsubsection{Security}
+\begin{itemize}
+	\item Status Messages
+		\begin{itemize}
+			\item During graph generation a loading icon will be displayed to show that the system is still busy, given that generation is still progressing normally
+			\item A message will be displayed when graph generation is complete
+			\item An error message will be displayed if the graph generation fails for some reason
+			\item Should the user minimise the application, status messages will be displayed using the notifications pane
+		\end{itemize}
+		
+	\item Data extraction from the images and graph generation should take a maximum of 10 seconds
+	\item Generated graphs should be mapped on to the correct surface in the appropriate orientation
+	\item Generated graphs should be scaled correctly and visible on the screen
+\item For saving \& sharing purposes, image size should not exceed 5MB and the  resolution should be between 800x600 \& 1920x1080
+	\item The camera resolution should not be below 5MP to ensure that accurate OCR analysis is conducted
+	\item The application has to be responsive, that is, the application should react to touch within a second so that no lag is apparent.
+\end{itemize}
 
 \subsection{Integration Requirements}
 The VizARD app will integrate with Android OS, and iOS, and use the suite of Android APIs which accompany the OSes. Specifically, APIs will be used to integrate with the sharing functions in order to share to different social media platforms and messaging apps. Additionally the app will gain access to the file system and camera via the built-in APIs. Furthermore, Java APIs will be used to integrate between the various systems which make up VizARD's functionality. For instance between OpenCV and Tesseract for the OCR.
