@@ -82,9 +82,12 @@ VizARD is a mobile application which will allow a user to take a picture of tabu
 
 The document you are reading is structured as follows:
 \begin{itemize}
+	\item \textbf{Vision} - this includes information on the purpose of the system, from the client's perspective. Possible users, uses and results that they intend to get from VizARD once it launches. As well as problems they intend for the app to solve.
+	\item \textbf{Background} - this contains information on the inspiration for the application. Which gap in the market the client intends to fill and what inspired the development of VizARD.
 	\item \textbf{Software Architecture} - here we discuss the architecture of the system.
 	This includes requirements and constraints as well as technological decisions and other non-functional aspects of VizARD.
 	\item \textbf{Functional requirements and application design} - this section handles the use-cases and overall functionality of the system.
+	\item \textbf{Open Issues} - there are inevitably questions that remain to be answered regarding the VizARD system and they are listed in this section. Problems here will be handled as they arise further in the development cycle.
 \end{itemize}
 
 \newpage
@@ -164,7 +167,7 @@ Furthermore any data that must be sent between the Operating System and the appl
 \end{itemize}
 Although no other specific constraints are specified, it is implied that the systems used must all be cross-platform to allow for the two different interfaces (Android and iOS). As such, the AR Engine, OCR Engine and 3D Library must be OS independent.
 
-\section{Architectural Patterns or Styles}
+\subsection{Architectural Patterns or Styles}
 Fundamentally we plan to have our system employ the MVC (Model View Controller), or rather, we employ a derivation of MVC called MVP (Model View Presenter.
 In the case of Android (the OS we will initially focus on) these MVP segments are as follows:
 \begin{itemize}
