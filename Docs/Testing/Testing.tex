@@ -17,7 +17,7 @@
 %-	HEADING SECTIONS
 %----------------------------------------------------------------------------------------
 \begin{center}
-	\includegraphics[width=7cm]{../Images/SavageRus.png}
+	\includegraphics[width=7cm]{../../Images/SavageRus.png}
 \end{center}	
 \vfill
 \textsc{\LARGE University of Pretoria}\\[1.5cm]
@@ -29,7 +29,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries VizARD Architectural and Functional Specification}\\[0.4cm] % Title of your document
+{ \huge \bfseries VizARD Testing Document}\\[0.4cm] % Title of your document
 {\large \today}
 \HRule \\[1.5cm]
  
@@ -75,19 +75,20 @@ Ruan \textsc{Klinkert}\\
 
 \section{Introduction}
 
-This is the software requirements specification for the vizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
+This is the main testing document for the vizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
 
 VizARD is a mobile application which will allow a user to take a picture of tabulated data and then view, automatically generated, 3D graphs of the data projected onto the document of which the image was taken.
 
-The document you are reading is structured as follows:
+The document you are reading is structured in 5 sections - each representing a component of the system and an additional section for the integration testing.
+The components are:
 \begin{itemize}
-	\item \textbf{Vision} - this includes information on the purpose of the system, from the client's perspective. Possible users, uses and results that they intend to get from VizARD once it launches. As well as problems they intend for the app to solve.
-	\item \textbf{Background} - this contains information on the inspiration for the application. Which gap in the market the client intends to fill and what inspired the development of VizARD.
-	\item \textbf{Software Architecture} - here we discuss the architecture of the system.
-	This includes requirements and constraints as well as technological decisions and other non-functional aspects of VizARD.
-	\item \textbf{Functional requirements and application design} - this section handles the use-cases and overall functionality of the system.
-	\item \textbf{Open Issues} - there are inevitably questions that remain to be answered regarding the VizARD system and they are listed in this section. Problems here will be handled as they arise further in the development cycle.
+\item Display Graph (Augmented Reality)
+\item Create Graph (3D Modelling)
+\item Data Input (Optical Character Recognition)
+\item Interface
 \end{itemize}
+
+In these sections the testing strategy is explained for each component and results of previous tests are displayed.
 
 \newpage
 \section{Vision}
@@ -118,215 +119,21 @@ The problem at hand is that there is a lot of information to go around and so li
 \newline
 Potential users could range from students, researchers, people in business, managers at stores and anyone else who would like to visualize data on the go.
 		
-
+%UNARINE RAMBANI
 \newpage
-\section{Software Architecture}
-In this section we discuss the software architecture, including architecture scope, requirements, access and integration requirements, quality requirements and architectural constraints.
+\section{Display Graph (Augmented Reality}
 
-\subsection{Architectural Scope}
-The ViZARD app will be a partially online application, with a small amount of processing happening remotely, which will allow a user to take a picture - using a cellphone's built-in camera - and generate a 3D graph from information in the image. Tesseract and OpenOCR - an open source OCR (Optical Character Recognition)library and API - is used to evaluate the image and find relevant information for generating the graph. 
-Unity 3D will be used to generate a graph of the information and finally Vuforia AR (Augmented Reality) SDK is used to project the graph onto a image marker for viewing.
+\section{Create Graph (3D Modelling)}
 
-The local application will run entirely as a Unity3D application. Processing of the data and images is handled with C\# scripts which are called from within the application. After an image has been taken by the user, it is sent in a POST request to the OpenOCR API for Tesseract to process. The results are returned and parsed into a JSON object to be used by the graph generation script to generate the models for the graphs.
-
-Furthermore users will have the ability to share graphs via several social applications on their cellphone/tablet.
-And finally all these systems will be running on Android OS and iOS based devices.
-
-\subsection{Integration Requirements}
-The VizARD app will integrate with Android OS, and iOS, and use the suite of Android APIs which accompany the OSes. Specifically, APIs will be used to integrate with the sharing functions in order to share to different social media platforms and messaging apps. Additionally the app will gain access to the file system and camera via the built-in APIs. Furthermore, the OpenOCR server is integrated with the application through a RESTful API and runs on a Docker container.
-
-\subsection{Access Channel Requirements}
-The local applications are not accessible remotely and, as such, do not have any access channels for external systems. The OpenOCR server, however, is accessed by each local deployment through a RESTful API which will require internet access (or local access to the server)
-.
-Users will gain access to the system via two mobile device operating system:
-\begin{itemize}
-	\item Android OS
-	\item iOS
-\end{itemize}
-
-Furthermore any data that must be sent between the Operating System and the application will be done via the native APIs for each OS. Since the application is being developed entirely in Unity3D (save for the OCR), Unity selects the APIs to complete tasks such as file system access, camera access and network access.
-\subsection{Quality Requirements}
-
-\begin{itemize}
-	\item Status Messages
-		\begin{itemize}
-			\item During graph generation a loading icon will be displayed to show that the system is still busy, given that generation is still progressing normally
-			\item A message will be displayed when graph generation is complete
-			\item An error message will be displayed if the graph generation fails for some reason
-			\item Should the user minimise the application, status messages will be displayed using the notifications pane
-		\end{itemize}
-		
-	\item Data extraction from the images and graph generation should take a maximum of 10 seconds
-	\item Generated graphs should be mapped on to the correct surface in the appropriate orientation
-	\item Generated graphs should be scaled correctly and visible on the screen
-\item For saving \& sharing purposes, image size should not exceed 5MB and the  resolution should be between 800x600 \& 1920x1080
-	\item The camera resolution should not be below 5MP to ensure that accurate OCR analysis is conducted
-	\item The application has to be responsive, that is, the application should react to touch within a second so that no lag is apparent.
-	\item OCR data should be returned within 3 seconds of the image being sent to server, provided that internet speeds are greater than 2 mbps.
-\end{itemize}
-
-\subsection{Architecture Constraints}
-\begin{itemize}
-	\item Android
-	\item iOS
-\end{itemize}
-Although no other specific constraints are specified, it is implied that the systems used must all be cross-platform to allow for the two different interfaces (Android and iOS). As such, the AR Engine, OCR Engine and 3D Library must be OS independent.
-
-To allow for this, the VizARD application will be developed in Unity 3D as a largely C\# based program. Through Unity's built in tools we will be able to package to the 2 required platforms more easily. 
-
-\subsection{Architectural Patterns or Styles}
-Fundamentally we plan to have our system employ the MVC (Model View Controller), or rather, we employ a derivation of MVC called MVP (Model View Presenter.
-In the case of Android (the OS we will initially focus on) these MVP segments are as follows:
-\begin{itemize}
-	\item \textbf{Model -} this is the data access layer - possibly a database API, remote server API or, as in our case, simply the device's file system API and the remote OCR server.
-	\item\textbf{View -} this is the layer that displays information to the user and reacts to user input. On Android, this may be the Activity Class or a Dialog.
-	\item \textbf{Presenter -} the Presenter handles the background tasks such as sending and receiving data to and from the Model and View. It also handles other background tasks. In the case of VizARD, the Presenter consists mainly of the inner components of the Unity game engine.
+\section{Data Gathering (Optical Character Recognition)}
+	\subsection{Strategy} The OCR component of the VizARD system runs as a remote server accessed through a RESTful API. As such testing takes place in 2 stages. The first stage is accuracy - several example table with different fonts are run through the system and mistakes are measured. Ideally we are aiming for an accuracy of above 95%. The second stage is load-testing. The server will have to handle many concurrent requests and delays due to traffic would be detremental to adoption of VizARD. Load-testing is done by sending 100 POST requests to the server within the space of a second. It is imperative that all those requests have received a response within 3 seconds of the start of the test. Changes will be made to the system until results are acceptable.
 	
-MVP separates the system into the above mentioned blocks in order to make them less dependent on one another and on most lifecycle-related events. Other advantages are discussed below.
+	\subsection{Results}
+	\subsubsection{Accuracy}
 
-We have decided to use this architectural pattern due to its pluggability and maintainability. By separating the system into these basic pieces we make troubleshooting easier as well as making the problem solving simpler (one need only focus on one layer at a time). We hope to also simplify the implementation of the system somewhat through this division of complex tasks into smaller - more manageable - tasks.
-\end{itemize}
+\section{User Interface}
 
-\subsection{Technologies}
-The application has 3 basic functions - 4 components:
-\begin{itemize}
-	\item Data Gathering - through OCR and user input using the Tesseract based OpenOCR server.
-	\item Graph Generation - by using Unity 3D.
-	\item Augmented Reality - we will use Vuforia AR SDK to project the 3D graph onto the image marker.
-	\item Interface - also built within Unity 3D and consists of Scripts and Scenes.	
-\end{itemize}
-
-Finally we will be developing the application for Android initially, but we will be porting the app to iOS in future. Unity is expected to simplify this greatly.
-\newpage
-\section{Functional requirements and application design}
-
-\subsection{Use case prioritization}
-	\subsubsection{Critical}
-		\begin{itemize}
-			\item Generate Graph
-			\item Display Graph
-		\end{itemize}
-	\subsubsection{Important}
-		\begin{itemize}
-			\item Editing Graphs
-			\item Save Graph
-		\end{itemize}
-	\subsubsection{Nice to Have}
-		\begin{itemize}
-			\item View Previous Graphs
-			\item Share Graph
-		\end{itemize}
-
-\subsection{Use case/Services contracts}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__GenerateGraph__serviceContract.png}  \\
-		\caption{Services Contract : GenerateGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__DisplayGraph__serviceContract.png}  \\
-		\caption{Services Contract : DisplayGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ViewAllPreviousGraphs__serviceContract.png}  \\
-		\caption{Services Contract : ViewAllPreviousGraphs}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ViewPreviousGraph__serviceContract.png}  \\
-		\caption{Services Contract : ViewPreviousGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__EditGraph}  \\
-		\caption{Services Contract : EditGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__SaveGraph}  \\
-		\caption{Services Contract : SaveGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ShareGraph}  \\
-		\caption{Services Contract : ShareGraph}
-	\end{figure}
-
-\subsection{Required functionality}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__GenerateGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : GenerateGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__DisplayGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : DisplayGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ViewAllPreviousGraphs__functionalRequirements.png}  \\
-		\caption{Required functionality : ViewAllPreviousGraphs}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ViewPreviousGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : ViewPreviousGraph}
-	\end{figure}	
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__EditGraph}  \\
-		\caption{Required functionality : EditGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__SaveGraph}  \\
-		\caption{Required functionality : SaveGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ShareGraph}  \\
-		\caption{Required functionality : ShareGraph}
-	\end{figure}
-
-\subsection{Process specifications}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__GenerateGraph__GenerateGraph.png}  \\
-		\caption{Process specifications : GenerateGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__DisplayGraph__DisplayGraph.png}  \\
-		\caption{Process specifications : DisplayGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png}  \\
-		\caption{Process specifications : ViewAllPreviousGraphs}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__ViewPreviousGraph__ViewPreviousGraph.png}  \\
-		\caption{Process specifications : ViewPreviousGraph}
-	\end{figure}
-	
-		\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__EditGraph}  \\
-		\caption{Process specifications : EditGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__SaveGraph}  \\
-		\caption{Process specifications : SaveGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/act__ShareGraph}  \\
-		\caption{Process specifications : ShareGraph}
-	\end{figure}
-
-%\subsection{Domain Model}
-
-%\subsection{Use of Reference Architectures and Frameworks}
-
-%\subsubsection{Web 2.0 Reference Architecture}
-
-%\subsection{Access and Integration Channels}
-
-\newpage
-\section{Open Issues}
+\section{Full System (Integration)}
 
 
 \end{document}
