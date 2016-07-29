@@ -121,9 +121,80 @@ Potential users could range from students, researchers, people in business, mana
 		
 %UNARINE RAMBANI
 \newpage
-\section{Display Graph (Augmented Reality}
+%\section{Display Graph (Augmented Reality}
 
+%Ruan "Ru" Klinkert
 \section{Create Graph (3D Modelling)}
+
+The objective of the tests was to pass a variety of values to the graph generation classes, and test if the graph is successfully created.\\\\
+\textbf{Variables}
+%
+\begin{itemize}
+	\item Values = Two dimensional array of floats representing all graph values
+	\item Categories = string array with names of each category (x-axis)
+	\item Series = string array with names of each series (z-axis)
+	\item Categories\_title = title for categories
+	\item Series\_title = title for series
+	\item Series\_Count = number of series
+	\item Category\_Count = number of categories
+\end{itemize}
+%
+\textbf{Pre-checks}\\
+If a pre-check fails, the graph will be adjusted but will still be drawn.
+%
+\begin{itemize}
+	\item The Length of Categories must be null or equal to Category\_Count \\
+		\textbf{Action:} The labels will not be drawn.
+	\item The Length of Series must be null or equal to Series\_Count \\
+		\textbf{Action:} The labels will not be drawn.
+	\item Categories\_title may be null\\
+		\textbf{Action:} irrelevant. 
+	\item Series\_title may be null\\
+		\textbf{Action:} irrelevant. 
+	\item Height and Width of Values must be equal to Series\_Count and Category\_Count respectively\\
+		\textbf{Action:} Series\_Count and Category\_Count will be adjusted to the height and width of Values.
+\end{itemize}
+%
+\subsubsection{Tests}
+\textbf{Bar, Point and Line Graph}\\
+Testing criteria:\\
+The last object to be drawn is the value label on the back-rightmost bar/point, if it is drawn, the test will be considered successful.\\\\
+%
+\textbf{Pie chart}\\
+Testing criteria:\\
+In order for the test to be considered successful, the final piece must stop at exactly 360 degrees.
+%
+\begin{itemize}
+	\item Categories\_title is not drawn.
+	\item Series\_title is not drawn. 
+	\item Series labels are not drawn.
+\end{itemize}
+%
+\textbf{Tested by:} Ruan Klinkert
+%
+\begin{table}[ht]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+Values                                                                                         & Categories                                                                                     & Series                                                          & Categories\_title & Series\_title & Series\_Count & Category\_Count & Result \\ \hline
+{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “Categories”      & “Series”      & 1             & 4               & PASS   \\ \hline
+{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “Categories”      & “”            & 1             & 4               & PASS   \\ \hline
+{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “Series”      & 1             & 4               & PASS   \\ \hline
+{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 1             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & {[}{]}                                                          & “Categories”      & “”            & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “”                & “Series”      & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “Categories”      & “Series”      & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & {[}{]}                                                          & “”                & “Series”      & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “Categories”      & “”            & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1{]},\\   {[}2{]},\\   {[}3{]}\end{tabular}                      & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 3             & 1               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}-1,-2,\\   -3,-4{]},\\   {[}-5,-6,\\   -7,-8{]}\end{tabular}     & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 2             & 4               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}0.1, 0.2, 0.3, 0.4{]},\\   {[}0.5, 0.6, 0.7, 0.8{]}\end{tabular} & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 2             & 4               & PASS   \\ \hline
+{[}{]}                                                                                         & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 0             & 0               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 0             & 0               & PASS   \\ \hline
+\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 8             & 10              & PASS   \\ \hline
+\end{tabular}}
+\end{table}
 
 \section{Data Gathering (Optical Character Recognition)}
 	\subsection{Strategy} The OCR component of the VizARD system runs as a remote server accessed through a RESTful API. As such testing takes place in 2 stages. The first stage is accuracy - several example table with different fonts are run through the system and mistakes are measured. Ideally we are aiming for an accuracy of above 95%. The second stage is load-testing. The server will have to handle many concurrent requests and delays due to traffic would be detremental to adoption of VizARD. Load-testing is done by sending 100 POST requests to the server within the space of a second. It is imperative that all those requests have received a response within 3 seconds of the start of the test. Changes will be made to the system until results are acceptable.
