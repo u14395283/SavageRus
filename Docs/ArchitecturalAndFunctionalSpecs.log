@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.19)  29 JUL 2016 21:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.19)  29 JUL 2016 21:34
 entering extended mode
-**./Testing.tex
-(Testing.tex
+**./ArchitecturalAndFunctionalSpecs.tex
+(ArchitecturalAndFunctionalSpecs.tex
 LaTeX2e <2015/10/01> patch level 2
 Babel <3.9n> and hyphenation patterns for 69 languages loaded.
 ("C:\Users\Ruan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -423,8 +423,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks18
 \@floatcapt=\box27
 )
-No file Testing.aux.
-\openout1 = `Testing.aux'.
+(ArchitecturalAndFunctionalSpecs.aux)
+\openout1 = `ArchitecturalAndFunctionalSpecs.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
@@ -456,8 +456,10 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 8.
 LaTeX Info: Redefining \pageref on input line 8.
 LaTeX Info: Redefining \nameref on input line 8.
+ (ArchitecturalAndFunctionalSpecs.out)
+(ArchitecturalAndFunctionalSpecs.out)
 \@outlinefile=\write3
-\openout3 = `Testing.out'.
+\openout3 = `ArchitecturalAndFunctionalSpecs.out'.
 
 
 ("C:\Users\Ruan\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mki
@@ -474,11 +476,11 @@ i"
 \MPnumerator=\count104
 \makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks20
-) <../../Images/SavageRus.png, id=3, 797.98125pt x 738.76pt>
-File: ../../Images/SavageRus.png Graphic file (type png)
+) <../Images/SavageRus.png, id=83, 797.98125pt x 738.76pt>
+File: ../Images/SavageRus.png Graphic file (type png)
 
-<use ../../Images/SavageRus.png>
-Package pdftex.def Info: ../../Images/SavageRus.png used on input line 20.
+<use ../Images/SavageRus.png>
+Package pdftex.def Info: ../Images/SavageRus.png used on input line 20.
 (pdftex.def)             Requested size: 199.16928pt x 184.38518pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 48.
@@ -488,10 +490,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 48.
  [1
 
-{C:/Users/Ruan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../../Images
-/SavageRus.png (PNG copy)>]
+{C:/Users/Ruan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../Images/Sa
+vageRus.png (PNG copy)>]
+(ArchitecturalAndFunctionalSpecs.toc)
 \tf@toc=\write4
-\openout4 = `Testing.toc'.
+\openout4 = `ArchitecturalAndFunctionalSpecs.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
@@ -499,65 +502,405 @@ been already used, duplicate ignored
                    \relax 
 l.74 \newpage
               [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 85.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 84.
 
 ("C:\Users\Ruan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 85.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 84.
 
 [2]
-Overfull \hbox (0.84886pt too wide) in paragraph at lines 95--96
+Overfull \hbox (0.84886pt too wide) in paragraph at lines 94--95
 \OT1/cmr/m/n/12 EPI-USE Labs (hence-forth re-ferred to as "the client") in-tend
 s for the VizARD
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 114--121
+Underfull \hbox (badness 10000) in paragraph at lines 113--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--121
+Underfull \hbox (badness 10000) in paragraph at lines 113--120
 
  []
 
-[4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 139.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 139.
- (Testing.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 139.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 139.
+[4] [5] [6] [7] [8]
+Overfull \hbox (6.86775pt too wide) in paragraph at lines 201--201
+[]\OT1/cmr/bx/n/17.28 Functional re-quire-ments and ap-pli-ca-tion de-
+ []
 
 
-Package rerunfilecheck Warning: File `Testing.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+<Images/class__GenerateGraph__serviceContract.png, id=147, 830.10126pt x 518.93
+875pt>
+File: Images/class__GenerateGraph__serviceContract.png Graphic file (type png)
+ <use Images/class__GenerateGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__GenerateGraph__serviceContract.png used 
+on input line 222.
+(pdftex.def)             Requested size: 390.0pt x 243.80623pt.
 
-Package rerunfilecheck Info: Checksums for `Testing.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  9D90ED96DF052B58A1005661D68AB108;652.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 139.
+<Images/class__DisplayGraph__serviceContract.png, id=148, 916.42375pt x 518.938
+75pt>
+File: Images/class__DisplayGraph__serviceContract.png Graphic file (type png)
+ <use Images/class__DisplayGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__DisplayGraph__serviceContract.png used o
+n input line 226.
+(pdftex.def)             Requested size: 390.0pt x 220.84299pt.
+ [9]
+<Images/class__ViewAllPreviousGraphs__serviceContract.png, id=153, 858.20625pt 
+x 423.5825pt>
+File: Images/class__ViewAllPreviousGraphs__serviceContract.png Graphic file (ty
+pe png)
+ <use Images/class__ViewAllPreviousGraphs__serviceContract.png>
+Package pdftex.def Info: Images/class__ViewAllPreviousGraphs__serviceContract.p
+ng used on input line 230.
+(pdftex.def)             Requested size: 390.0pt x 192.4912pt.
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.232 	\end{figure}
+                    <./Images/class__GenerateGraph__serviceContract.png (PNG co
+py)>]
+<Images/class__ViewPreviousGraph__serviceContract.png, id=159, 930.47626pt x 43
+0.60875pt>
+File: Images/class__ViewPreviousGraph__serviceContract.png Graphic file (type p
+ng)
+ <use Images/class__ViewPreviousGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__ViewPreviousGraph__serviceContract.png u
+sed on input line 235.
+(pdftex.def)             Requested size: 390.0pt x 180.4799pt.
+ [11pdfTeX warning (ext4): destination with the same identifier (name{figure.2}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.238 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.238 
+       <./Images/class__DisplayGraph__serviceContract.png (PNG copy)> <./Images
+/class__ViewAllPreviousGraphs__serviceContract.png (PNG copy)>]
+<Images/class__EditGraph__serviceContract.png, id=166, 872.25874pt x 455.7025pt
+>
+File: Images/class__EditGraph__serviceContract.png Graphic file (type png)
+ <use Images/class__EditGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__EditGraph__serviceContract.png used on i
+nput line 240.
+(pdftex.def)             Requested size: 390.0pt x 203.75002pt.
+
+<Images/class__SaveGraph__serviceContract.png, id=167, 837.1275pt x 376.40625pt
+>
+File: Images/class__SaveGraph__serviceContract.png Graphic file (type png)
+ <use Images/class__SaveGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__SaveGraph__serviceContract.png used on i
+nput line 245.
+(pdftex.def)             Requested size: 390.0pt x 175.35446pt.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.248 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.248 
+       <./Images/class__ViewPreviousGraph__serviceContract.png (PNG copy)> <./I
+mages/class__EditGraph__serviceContract.png (PNG copy)>]
+<Images/class__ShareGraph__serviceContract.png, id=175, 891.33pt x 532.99126pt>
+File: Images/class__ShareGraph__serviceContract.png Graphic file (type png)
+<use Images/class__ShareGraph__serviceContract.png>
+Package pdftex.def Info: Images/class__ShareGraph__serviceContract.png used on 
+input line 250.
+(pdftex.def)             Requested size: 390.0pt x 233.2075pt.
+
+<Images/class__DetectGraphType__serviceContract.png, id=176, 879.285pt x 383.43
+25pt>
+File: Images/class__DetectGraphType__serviceContract.png Graphic file (type png
+)
+ <use Images/class__DetectGraphType__serviceContract.png>
+Package pdftex.def Info: Images/class__DetectGraphType__serviceContract.png use
+d on input line 255.
+(pdftex.def)             Requested size: 390.0pt x 170.06818pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.6}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.258 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.258 
+       <./Images/class__SaveGraph__serviceContract.png (PNG copy)> <./Images/cl
+ass__ShareGraph__serviceContract.png (PNG copy)>]
+<Images/class__OCR__serviceContract.png, id=183, 858.20625pt x 364.36125pt>
+File: Images/class__OCR__serviceContract.png Graphic file (type png)
+
+<use Images/class__OCR__serviceContract.png>
+Package pdftex.def Info: Images/class__OCR__serviceContract.png used on input l
+ine 260.
+(pdftex.def)             Requested size: 390.0pt x 165.5789pt.
+
+<Images/uc__GenerateGraph__functionalRequirements.png, id=184, 691.58376pt x 38
+9.455pt>
+File: Images/uc__GenerateGraph__functionalRequirements.png Graphic file (type p
+ng)
+ <use Images/uc__GenerateGraph__functionalRequirements.png>
+Package pdftex.def Info: Images/uc__GenerateGraph__functionalRequirements.png u
+sed on input line 266.
+(pdftex.def)             Requested size: 390.0pt x 219.6265pt.
+
+<Images/uc__DisplayGraph__functionalRequirements.png, id=185, 593.21625pt x 340
+.27126pt>
+File: Images/uc__DisplayGraph__functionalRequirements.png Graphic file (type pn
+g)
+ <use Images/uc__DisplayGraph__functionalRequirements.png>
+Package pdftex.def Info: Images/uc__DisplayGraph__functionalRequirements.png us
+ed on input line 270.
+(pdftex.def)             Requested size: 390.0pt x 223.71263pt.
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.8}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.272 	\end{figure}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{figure.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.272 	\end{figure}
+                    <./Images/class__DetectGraphType__serviceContract.png (PNG 
+copy)> <./Images/class__OCR__serviceContract.png (PNG copy)>]
+<Images/uc__ViewAllPreviousGraphs__functionalRequirements.png, id=192, 579.1637
+6pt x 347.2975pt>
+File: Images/uc__ViewAllPreviousGraphs__functionalRequirements.png Graphic file
+ (type png)
+
+<use Images/uc__ViewAllPreviousGraphs__functionalRequirements.png>
+Package pdftex.def Info: Images/uc__ViewAllPreviousGraphs__functionalRequiremen
+ts.png used on input line 274.
+(pdftex.def)             Requested size: 390.0pt x 233.86456pt.
+
+<Images/uc__ViewPreviousGraph__functionalRequirements.png, id=193, 572.1375pt x
+ 347.2975pt>
+File: Images/uc__ViewPreviousGraph__functionalRequirements.png Graphic file (ty
+pe png)
+ <use Images/uc__ViewPreviousGraph__functionalRequirements.png>
+Package pdftex.def Info: Images/uc__ViewPreviousGraph__functionalRequirements.p
+ng used on input line 278.
+(pdftex.def)             Requested size: 390.0pt x 236.7368pt.
+
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.10}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.280 	\end{figure}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{figure.11}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.280 	\end{figure}
+                    <./Images/uc__GenerateGraph__functionalRequirements.png (PN
+G copy)> <./Images/uc__DisplayGraph__functionalRequirements.png (PNG copy)>]
+<Images/uc__EditGraph.jpg, id=200, 636.3775pt x 262.9825pt>
+File: Images/uc__EditGraph.jpg Graphic file (type jpg)
+
+<use Images/uc__EditGraph.jpg>
+Package pdftex.def Info: Images/uc__EditGraph.jpg used on input line 283.
+(pdftex.def)             Requested size: 390.0pt x 161.16545pt.
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.12
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.286 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+13}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.286 
+       <./Images/uc__ViewAllPreviousGraphs__functionalRequirements.png (PNG cop
+y)> <./Images/uc__ViewPreviousGraph__functionalRequirements.png (PNG copy)>]
+<Images/uc__SaveGraph.jpg, id=207, 446.66875pt x 220.825pt>
+File: Images/uc__SaveGraph.jpg Graphic file (type jpg)
+
+<use Images/uc__SaveGraph.jpg>
+Package pdftex.def Info: Images/uc__SaveGraph.jpg used on input line 288.
+(pdftex.def)             Requested size: 390.0pt x 192.81367pt.
+
+<Images/uc__ShareGraph.jpg, id=208, 522.95375pt x 248.93pt>
+File: Images/uc__ShareGraph.jpg Graphic file (type jpg)
+
+<use Images/uc__ShareGraph.jpg>
+Package pdftex.def Info: Images/uc__ShareGraph.jpg used on input line 293.
+(pdftex.def)             Requested size: 390.0pt x 185.64488pt.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.14
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.296 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.296 
+       <./Images/uc__EditGraph.jpg> <./Images/uc__SaveGraph.jpg>]
+<Images/act__GenerateGraph__GenerateGraph.png, id=215, 1006.76125pt x 415.5525p
+t>
+File: Images/act__GenerateGraph__GenerateGraph.png Graphic file (type png)
+ <use Images/act__GenerateGraph__GenerateGraph.png>
+Package pdftex.def Info: Images/act__GenerateGraph__GenerateGraph.png used on i
+nput line 299.
+(pdftex.def)             Requested size: 390.0pt x 160.9742pt.
+
+<Images/act__DisplayGraph__DisplayGraph.png, id=216, 1003.75pt x 291.0875pt>
+File: Images/act__DisplayGraph__DisplayGraph.png Graphic file (type png)
+
+<use Images/act__DisplayGraph__DisplayGraph.png>
+Package pdftex.def Info: Images/act__DisplayGraph__DisplayGraph.png used on inp
+ut line 303.
+(pdftex.def)             Requested size: 390.0pt x 113.1017pt.
+
+<Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png, id=217, 777.9062
+5pt x 208.78pt>
+File: Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png Graphic file
+ (type png)
+
+<use Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png>
+Package pdftex.def Info: Images/act__ViewAllPreviousGraphs__ViewAllPreviousGrap
+hs.png used on input line 307.
+(pdftex.def)             Requested size: 390.0pt x 104.67325pt.
+ [18pdfTeX warning (ext4): destination with the same identifier (name{figure.16
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.309 	\end{figure}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{figure.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.309 	\end{figure}
+                    <./Images/uc__ShareGraph.jpg> <./Images/act__GenerateGraph_
+_GenerateGraph.png (PNG copy)>]
+<Images/act__ViewPreviousGraph__ViewPreviousGraph.png, id=225, 992.70876pt x 27
+1.0125pt>
+File: Images/act__ViewPreviousGraph__ViewPreviousGraph.png Graphic file (type p
+ng)
+ <use Images/act__ViewPreviousGraph__ViewPreviousGraph.png>
+Package pdftex.def Info: Images/act__ViewPreviousGraph__ViewPreviousGraph.png u
+sed on input line 311.
+(pdftex.def)             Requested size: 390.0pt x 106.47188pt.
+
+<Images/act__EditGraph.jpg, id=226, 869.2475pt x 355.3275pt>
+File: Images/act__EditGraph.jpg Graphic file (type jpg)
+
+<use Images/act__EditGraph.jpg>
+Package pdftex.def Info: Images/act__EditGraph.jpg used on input line 316.
+(pdftex.def)             Requested size: 390.0pt x 159.42418pt.
+ [19pdfTeX warning (ext4): destination with the same identifier (name{figure.18
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+19}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+20}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 
+       <./Images/act__DisplayGraph__DisplayGraph.png (PNG copy)> <./Images/act_
+_ViewAllPreviousGraphs__ViewAllPreviousGraphs.png (PNG copy)> <./Images/act__Vi
+ewPreviousGraph__ViewPreviousGraph.png (PNG copy)>]
+<Images/act__SaveGraph.jpg, id=234, 779.91376pt x 320.19624pt>
+File: Images/act__SaveGraph.jpg Graphic file (type jpg)
+
+<use Images/act__SaveGraph.jpg>
+Package pdftex.def Info: Images/act__SaveGraph.jpg used on input line 321.
+(pdftex.def)             Requested size: 390.0pt x 160.11238pt.
+
+<Images/act__ShareGraph.jpg, id=235, 868.24374pt x 320.19624pt>
+File: Images/act__ShareGraph.jpg Graphic file (type jpg)
+
+<use Images/act__ShareGraph.jpg>
+Package pdftex.def Info: Images/act__ShareGraph.jpg used on input line 326.
+(pdftex.def)             Requested size: 390.0pt x 143.82802pt.
+ [20pdfTeX warning (ext4): destination with the same identifier (name{figure.21
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.329 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+22}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.329 
+       <./Images/act__EditGraph.jpg> <./Images/act__SaveGraph.jpg>] [21pdfTeX w
+arning (ext4): destination with the same identifier (name{figure.23}) has been 
+already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.338 \newpage
+               <./Images/act__ShareGraph.jpg>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 342.
+ [22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
+
+(ArchitecturalAndFunctionalSpecs.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
+Package rerunfilecheck Info: File `ArchitecturalAndFunctionalSpecs.out' has not
+ changed.
+(rerunfilecheck)             Checksum: FE3F885180478AE52C22CD1A9F236EFC;1344.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 342.
  ) 
 Here is how much of TeX's memory you used:
- 5252 strings out of 493634
- 77305 string characters out of 3135647
- 157359 words of memory out of 3000000
- 8601 multiletter control sequences out of 15000+200000
+ 5452 strings out of 493634
+ 83821 string characters out of 3135647
+ 158497 words of memory out of 3000000
+ 8718 multiletter control sequences out of 15000+200000
  10051 words of font info for 35 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 29i,4n,28p,804b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,5n,28p,522b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Ruan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmbx12.pfb><C:/Users/Ruan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmcsc10.pfb><C:/Users/Ruan/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Ruan/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Ruan/AppData/Local/
 Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Testing.pdf (6 pages, 206463 bytes).
+Output written on ArchitecturalAndFunctionalSpecs.pdf (23 pages, 1291162 bytes)
+.
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 285 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 281 words of extra memory for PDF output out of 10000 (max. 10000000)
 
