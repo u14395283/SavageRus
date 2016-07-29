@@ -7,6 +7,8 @@ Docs/Software.Requirements.Specification.and.Technology.Neutral.Process.Design.l
 Docs/Software.Requirements.Specification.and.Technology.Neutral.Process.Design.synctex.gz
 *.pdf
 *.psd
+*.log
+*.synctex.gz
 
 # =============== #
 # Unity generated #
