@@ -129,8 +129,38 @@ Potential users could range from students, researchers, people in business, mana
 	\subsection{Strategy} The OCR component of the VizARD system runs as a remote server accessed through a RESTful API. As such testing takes place in 2 stages. The first stage is accuracy - several example table with different fonts are run through the system and mistakes are measured. Ideally we are aiming for an accuracy of above 95%. The second stage is load-testing. The server will have to handle many concurrent requests and delays due to traffic would be detremental to adoption of VizARD. Load-testing is done by sending 100 POST requests to the server within the space of a second. It is imperative that all those requests have received a response within 3 seconds of the start of the test. Changes will be made to the system until results are acceptable.
 	
 	\subsection{Results}
-	\subsubsection{Accuracy}
+		\subsubsection{Accuracy}
+		As is evident by the comparisons below, we have not yet come near our goal for accuracy.\\
+		
+		\textbf {Table 1}\\
+		\includegraphics[width=7cm]{Images/Tables/table.jpg}\\
+		
+		\textbf{Result 1}\\
+		Region Older People Frail Elderly
 
+		North West 112,118 5,249\\
+		South East 105,653 3,577\\
+		Yorkshire \& Humber 104,241 1,917\\
+		North East 103.835 6.332\\
+		West Midlands 99,917 4.508\\
+		East Midlands 77.439 2.073\\
+		London 74,903 5.718\\
+		Eastern 71.115 2.837\\
+		Sou\textbf{l}h West 65,545 3,633\\
+		TOTAL 814. 756 35,844\\
+		
+		\textbf {Table 2}\\
+		\includegraphics[width=7cm]{Images/Tables/8Table9.png}\\
+		
+		\textbf{Result 2}\\
+		mm" with Mznzuzrs Pay Hmmzys\\
+		 v 7 s 7\\
+		mm 7 4 3 s
+		Sllnzwlsnrs 7 4 5 5\\
+		51mm...“ calls 2 2 1 4\\
+		
+		
+		As evidenced by the sample tests above, we have not yet reached our acceptable error threshold for this system. Development will continue to improve accuracy and testing will continue concurrently.
 \section{User Interface}
 
 \section{Full System (Integration)}

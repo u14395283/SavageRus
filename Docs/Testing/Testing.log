@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.22)  29 JUL 2016 20:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.22)  29 JUL 2016 20:31
 entering extended mode
 **./Testing.tex
 (Testing.tex
@@ -457,7 +457,7 @@ LaTeX Info: Redefining \nameref on input line 8.
 \MPnumerator=\count104
 \makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks20
-) <../../Images/SavageRus.png, id=39, 797.98125pt x 738.76pt>
+) <../../Images/SavageRus.png, id=47, 797.98125pt x 738.76pt>
 File: ../../Images/SavageRus.png Graphic file (type png)
 
 <use ../../Images/SavageRus.png>
@@ -506,28 +506,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--121
  []
 
 [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 139.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 139.
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+<Images/Tables/table.jpg, id=85, 703.62875pt x 381.425pt>
+File: Images/Tables/table.jpg Graphic file (type jpg)
+
+<use Images/Tables/table.jpg>
+Package pdftex.def Info: Images/Tables/table.jpg used on input line 136.
+(pdftex.def)             Requested size: 199.16928pt x 107.96228pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--151
+
+ []
+
+[5 <./Images/Tables/table.jpg>]
+<Images/Tables/8Table9.png, id=90, 301.125pt x 171.039pt>
+File: Images/Tables/8Table9.png Graphic file (type png)
+
+<use Images/Tables/8Table9.png>
+Package pdftex.def Info: Images/Tables/8Table9.png used on input line 153.
+(pdftex.def)             Requested size: 199.16928pt x 113.13141pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--161
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
+[6 <./Images/Tables/8Table9.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
  (Testing.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 139.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 139.
-
-
-Package rerunfilecheck Warning: File `Testing.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Testing.out':
-(rerunfilecheck)             Before: C8F977A599D7AE354CFC9263314CF605;526
-(rerunfilecheck)             After:  9D90ED96DF052B58A1005661D68AB108;652.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 139.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
+Package rerunfilecheck Info: File `Testing.out' has not changed.
+(rerunfilecheck)             Checksum: 9D90ED96DF052B58A1005661D68AB108;652.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
  ) 
 Here is how much of TeX's memory you used:
- 5270 strings out of 493634
- 76159 string characters out of 3143744
- 157442 words of memory out of 3000000
- 8611 multiletter control sequences out of 15000+200000
+ 5284 strings out of 493634
+ 76465 string characters out of 3143744
+ 157445 words of memory out of 3000000
+ 8621 multiletter control sequences out of 15000+200000
  10051 words of font info for 35 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  29i,4n,28p,804b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -536,9 +566,9 @@ ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Testing.pdf (6 pages, 210607 bytes).
+Output written on Testing.pdf (7 pages, 293363 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 78 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 122 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 
