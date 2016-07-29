@@ -124,23 +124,28 @@ Potential users could range from students, researchers, people in business, mana
 \section{Software Architecture}
 In this section we discuss the software architecture, including architecture scope, requirements, access and integration requirements, quality requirements and architectural constraints.
 
-\subsubsection{Architectural Scope}
-The ViZARD app will be an offline application (not connected directly to any network/server) which will allow a user to take a picture - using a cellphone's built-in camera - and generate a 3D graph from information in the image. Tesseract - an open source OCR (Optical Character Recognition)- is used to evaluate the image and find relevant information for generating the graph. 
-Unity 3D and OpenGL will be used to generate a graph of the information and finally Vuforia AR (Augmented Reality) SDK is used to project the graph onto a image marker for viewing.
+\subsection{Architectural Scope}
+The ViZARD app will be a partially online application, with a small amount of processing happening remotely, which will allow a user to take a picture - using a cellphone's built-in camera - and generate a 3D graph from information in the image. Tesseract and OpenOCR - an open source OCR (Optical Character Recognition)library and API - is used to evaluate the image and find relevant information for generating the graph. 
+Unity 3D will be used to generate a graph of the information and finally Vuforia AR (Augmented Reality) SDK is used to project the graph onto a image marker for viewing.
+
+The local application will run entirely as a Unity3D application. Processing of the data and images is handled with C# scripts which are called from within the application. After an image has been taken by the user, it is sent in a POST request to the OpenOCR API for Tesseract to process. The results are returned and parsed into a JSON object to be used by the graph generation script to generate the models for the graphs.
+
 Furthermore users will have the ability to share graphs via several social applications on their cellphone/tablet.
 And finally all these systems will be running on Android OS and iOS based devices.
 
 \subsection{Integration Requirements}
-The VizARD app will integrate with Android OS, and iOS, and use the suite of Android APIs which accompany the OSes. Specifically, APIs will be used to integrate with the sharing functions in order to share to different social media platforms and messaging apps. Additionally the app will gain access to the file system and camera via the built-in APIs. Furthermore, Java APIs will be used to integrate between the various systems which make up VizARD's functionality. For instance between OpenCV and Tesseract for the OCR.
+The VizARD app will integrate with Android OS, and iOS, and use the suite of Android APIs which accompany the OSes. Specifically, APIs will be used to integrate with the sharing functions in order to share to different social media platforms and messaging apps. Additionally the app will gain access to the file system and camera via the built-in APIs. Furthermore, the OpenOCR server is integrated with the application through a RESTful API and runs on a Docker container.
 
 \subsection{Access Channel Requirements}
-The system will function as an offline application. As such there will not be any outside system with direct access to the application. There are, however, access channels for users. Specifically users will gain access to the system via two mobile device operating system:
+The local applications are not accessible remotely and, as such, do not have any access channels for external systems. The OpenOCR server, however, is accessed by each local deployment through a RESTful API which will require internet access (or local access to the server)
+.
+Users will gain access to the system via two mobile device operating system:
 \begin{itemize}
 	\item Android OS
 	\item iOS
 \end{itemize}
 
-Furthermore any data that must be sent between the Operating System and the application will be done via the native APIs for each OS. On Android this will consist of the numerous Java APIs that is built into the system, and will likely be used to interact with the camera, file system, and (for sharing) the data connection. On iOS an Objective-C API suite will be used - in keeping with the native development philosophy of iOS.
+Furthermore any data that must be sent between the Operating System and the application will be done via the native APIs for each OS. Since the application is being developed entirely in Unity3D (save for the OCR), Unity selects the APIs to complete tasks such as file system access, camera access and network access.
 \subsection{Quality Requirements}
 
 \begin{itemize}
