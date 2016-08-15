@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Dataset.cs" />
+     <Compile Include="Assets\Graph.cs" />
      <Compile Include="Assets\ModelInstantiator.cs" />
      <Compile Include="Assets\Vuforia\Scripts\BackgroundPlaneBehaviour.cs" />
      <Compile Include="Assets\Vuforia\Scripts\CloudRecoBehaviour.cs" />
@@ -107,10 +109,10 @@
  <HintPath>C:/Program Files (x86)/Unity 5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>C:/Users/Ruan/Desktop/Vizard/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>C:/Users/Ruan/Desktop/SavageRus/Vizard/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
  <Reference Include="Vuforia.UnityExtensions">
- <HintPath>C:/Users/Ruan/Desktop/Vizard/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
+ <HintPath>C:/Users/Ruan/Desktop/SavageRus/Vizard/Assets/Vuforia/Scripts/Internal/Vuforia.UnityExtensions.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
