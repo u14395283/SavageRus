@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 454fad02a178a8042b8258fb9dbd6ac6
+guid: 28df9fd90156d411d90d3226bb487108
 folderAsset: yes
-timeCreated: 1467306216
+timeCreated: 1467714763
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
@@ -12,6 +12,10 @@ PluginImporter:
     Any:
       enabled: 1
       settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
   userData: 
   assetBundleName: 
   assetBundleVariant: 

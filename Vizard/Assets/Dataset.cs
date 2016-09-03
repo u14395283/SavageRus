@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Dataset {
+	public static Dataset dataset = null;
+
 	public enum Types{
 		Pie,
 		Bar,

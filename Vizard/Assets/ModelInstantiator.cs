@@ -8,7 +8,7 @@ public class ModelInstantiator : MonoBehaviour {
 	public TrackableBehaviour theTrackable;
 	private GameObject trackableGameObject;
 
-	private bool mSwapModel = false;
+	private bool modelset = false;
 	//Reference to model
 	Graph graph = null;
 
@@ -51,11 +51,6 @@ public class ModelInstantiator : MonoBehaviour {
 			GUI.Label (new Rect (0, 0, Screen.width, 150), guitext, style);
 		}
 
-		//Swap button
-		if (GUI.Button (new Rect (50, 150, 250, 100), "Swap")) {
-			mSwapModel = true;
-		}
-			
 	}
 	#endregion
 
@@ -65,9 +60,8 @@ public class ModelInstantiator : MonoBehaviour {
 
 	#region Update
 	void Update () {
-		if (mSwapModel && theTrackable != null) {
+		if (!modelset && theTrackable != null) {
 			SetModel ();
-			mSwapModel = false;
 		} 
 			
 		///////////////////////
@@ -99,7 +93,7 @@ public class ModelInstantiator : MonoBehaviour {
 					if (deltaMagnitudeDiff < 0) { //If fingers are moving apart -> grow
 						graph.Model.transform.localScale *= 1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f);
 					} else { //If fingers are moving closer -> shrink
-						if ((graph.Model.transform.localScale.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f))) >= defaultScale.x) {
+						//if ((graph.Model.transform.localScale.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f))) >= defaultScale.x) {
 							//Shrink
 							graph.Model.transform.localScale /= 1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f);
 
@@ -139,7 +133,7 @@ public class ModelInstantiator : MonoBehaviour {
 									graph.Model.transform.localPosition.z / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)));
 							}
 
-						}
+						//}
 					}
 
 			
@@ -160,12 +154,12 @@ public class ModelInstantiator : MonoBehaviour {
 							float swipeSpeed = 5.0f * (defaultScale.x / graph.Model.transform.localScale.x);
 
 							//Check whether a greater distance was moved across the x-axis or y-axis
-							if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
+							if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x)){
 								//X movement greater than Y movement
 								float swipeValue = touch.position.x - lastPosition.x;
 								float newWidth = (graph.Model.transform.localScale.x / defaultScale.x);
 
-								if (direction.x > 0) { //If moving right - finger moved from lower x value to higher x value
+								if (direction.y > 0) { //If moving right - finger moved from lower x value to higher x value
 									if (graph.Model.transform.localPosition.x + ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed) <= (newWidth / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x + ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed),
@@ -200,7 +194,7 @@ public class ModelInstantiator : MonoBehaviour {
 								float heightRatio = graph.Model.transform.Find ("Graph Base").transform.lossyScale.z / graph.Model.transform.Find ("Graph Base").transform.lossyScale.x;
 								float newHeight = (graph.Model.transform.localScale.y / defaultScale.y) * heightRatio;
 
-								if (direction.y > 0) {  //If moving up - finger moved from lower y value to higher y value
+								if (direction.x > 0) {  //If moving up - finger moved from lower y value to higher y value
 									if (graph.Model.transform.localPosition.z + ((Mathf.Abs (swipeValue / Screen.height)) / swipeSpeed) <= (newHeight / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x,
@@ -241,14 +235,12 @@ public class ModelInstantiator : MonoBehaviour {
 	}
 	#endregion
 
-	int model = 2;
-
 	#region Set model
 	private void SetModel() {
 		trackableGameObject = theTrackable.gameObject;
 
 		trackableGameObject.transform.position = new Vector3 (0f, 0f, 0f);
-		trackableGameObject.transform.eulerAngles = new Vector3 (0f, 0f, 0f);
+		trackableGameObject.transform.eulerAngles = new Vector3 (0f, 180f, 0f);
 
 		foreach (Transform child in trackableGameObject.transform)
 			GameObject.Destroy (child.gameObject);
@@ -258,54 +250,27 @@ public class ModelInstantiator : MonoBehaviour {
 		// Create Model //
 		//////////////////
 
-		//Generate mock data
-		int series_count = (int)Random.Range(1,5);
-		int category_count = (int)Random.Range(1,20);
 
-		float[,] values = new float[series_count, category_count];
+		if (Dataset.dataset != null) {
+			graph = new Graph (Dataset.dataset);
 
-		for (int s = 0; s < series_count; s++){
-			for (int c = 0; c < category_count; c++) {
-				values [s, c] = Random.Range (1, 100) / 100f;
-			}
+			if (trackableGameObject != null)
+				graph.Model.transform.parent = trackableGameObject.transform;
+
+			//This is where you would change the scale
+			float scale = 0.3f;
+
+			graph.Model.transform.localScale = new Vector3 (
+				graph.Model.transform.localScale.x * scale, 
+				graph.Model.transform.localScale.y * scale, 
+				graph.Model.transform.localScale.z * scale); 
+
+			defaultScale = graph.Model.transform.localScale; //This is for zooming the graph - Do no change
+
+			modelset = true;
 		}
-
-		string[] categories = { "John", "Jane","Peter","Mary","Robert","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas" };
-		string[] series = { "Apples", "Pears", "Bananas", "Apples", "Pears", "Bananas" };
-
-		Dataset.Types type = Dataset.Types.Null;
-
-		if (model == 1)
-			type = Dataset.Types.Bar;
-		else if (model == 2)
-			type = Dataset.Types.Point;
-		else if (model == 3)
-			type = Dataset.Types.Line;
-		else if (model == 4)
-			type = Dataset.Types.Pie;
 		
-
-		Dataset data = new Dataset (type, "", categories, series, "Employees", "Fruit", values, category_count, series_count);
-
-		graph = new Graph (data);
-
-		guitext = "Randomly generated graph " + model.ToString ();
-		if (trackableGameObject != null)
-			graph.Model.transform.parent = trackableGameObject.transform;
-
-		//This is where you would change the scale
-		float scale = 1.5f;
-
-		graph.Model.transform.localScale = new Vector3 (
-			graph.Model.transform.localScale.x * scale, 
-			graph.Model.transform.localScale.y * scale, 
-			graph.Model.transform.localScale.z * scale); 
-
-		defaultScale = graph.Model.transform.localScale; //This is for zooming the graph - Do no change
-
-		model++;
-		if (model > 4)
-			model = 1;
+		
 	}
 	#endregion
 

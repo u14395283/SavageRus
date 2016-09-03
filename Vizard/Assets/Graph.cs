@@ -1608,6 +1608,8 @@ public class Graph {
 	#region Tools
 	//Default colors
 	private Color[] colors = new Color[]{ 
+		new Color32((byte)207,(byte)17,(byte)63,(byte)255),
+		new Color32((byte)11,(byte)28,(byte)56,(byte)255),
 		new Color32((byte)91,(byte)155,(byte)213,(byte)255),
 		new Color32((byte)237,(byte)125,(byte)49,(byte)255),
 		new Color32((byte)165,(byte)165,(byte)165,(byte)255),

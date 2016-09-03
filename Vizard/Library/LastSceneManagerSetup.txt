@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Vizard.unity
+- path: Assets/Scenes/Vuforia-3-UserDefinedTargets.unity
   isLoaded: 1
   isActive: 1
