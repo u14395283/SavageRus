@@ -13,10 +13,10 @@ Docs/Software.Requirements.Specification.and.Technology.Neutral.Process.Design.s
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
+/Vizard/Temp/
 [Oo]bj/
 [Bb]uild
-/[Ll]ibrary/
+/Vizard/Library/
 sysinfo.txt
 *.stackdump
  
