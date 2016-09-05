@@ -329,15 +329,22 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		}
 		string[] series = seriesList.ToArray ();
 
+		bool success = true;
+
 		float[,] table = new float[tableList.Count,categories.Length];
 		for(int i = 0; i < tableList.Count; i++){
 			for(int x = 0; x < categories.Length; x++){
 				float tempFloat = 0;
-					
-				if (Single.TryParse (tableList.ElementAt (i) [x], out tempFloat)) {
-				} else if (Single.TryParse (sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
-				} else {
+				try{
+					if (Single.TryParse (tableList.ElementAt (i) [x], out tempFloat)) {
+					} else if (Single.TryParse (sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
+					} else {
+						tempFloat = 0;
+						success = false;
+					}
+				} catch(Exception e){
 					tempFloat = 0;
+					success = false;
 				}
 
 				table [i, x] = tempFloat;
