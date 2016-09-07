@@ -29,7 +29,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries VizARD Architectural and Functional Specification}\\[0.4cm] % Title of your document
+{ \huge \bfseries VizARD Architectural and Functional Specification - Version 0.3}\\[0.4cm] % Title of your document
 {\large \today}
 \HRule \\[1.5cm]
  
@@ -90,16 +90,16 @@ The document you are reading is structured as follows:
 \end{itemize}
 
 \newpage
-\section{Vision}
-EPI-USE Labs (henceforth referred to as "the client") intends for the VizARD application to be used by a large variety of mobile device users across both Android and iOS platforms. VizARD helps to simplify the analysis of numerical data through visualization, in the form of automatically generated 3D graphs.
+\section{Vision and Background}
+EPI-USE Labs intends for the VizARD application to be used by a large variety of mobile device users across both Android and iOS platforms. VizARD helps to simplify the analysis of numerical data through visualization, in the form of automatically generated 3D graphs. Target users are existing EPI-USE customers - businesspersons.
 
-Fundamentally, the system will allow a user to take a picture of a table of numerical data which he/she may need to interpret. The application will then use OCR (Optical Character Recognition) to read the data from the picture. It will then decide on an appropriate graph for the type of data and generate a graph for the data. After the graph is generated, it will project a 3D model of the graph onto the image (or, ideally, onto a live stream of the paper) for the user to view.
+Fundamentally, the system will allow a user to take a picture of a table of numerical data which he/she may need to interpret. The application will then use OCR (Optical Character Recognition) to read the data from the picture. It will then decide on an appropriate graph for the type of data and generate the graph. After the graph is generated, the 3D model will be visible to the user through the screen of the device - as though it is floating above the table from which the data was gathered.
 
 Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
 
 Typically usage will be as follows:
 \begin{itemize}
-	\item The user (possibly a businessman) finds tabular data he/she would like to analyse more easily.
+	\item The user (possibly a businessman/businesswoman) finds tabular data he/she would like to analyse more easily.
 	\item The user opens the app.
 	\item Once the app is open and loaded, the user takes a picture of the table he/she would like to analyse.
 	\item The user receives a notification that the graph has been generated and the generated graph is displayed on the screen (mapped onto the paper).
@@ -108,26 +108,14 @@ Typically usage will be as follows:
 \end{itemize}
 
 \newpage
-\section{Background}
-
-It is much simpler for us to recognize patterns and make quick analysis of data if it is presented to us in visual form. A simple example for the use of such an application would be a principal at a school who is presented with the Mathematics results of a particular grade for several quarters, such an application would make it very simple for him to quickly visualize the numeric data and see the trend.
-\newline
-\newline
-The problem at hand is that there is a lot of information to go around and so little time to process. In a society that demands us to make decisions quickly, it would be wise to have a tool that aids the decision making process by making the information easier to digest and that is what vizARD intends to do.
-\newline
-\newline
-Potential users could range from students, researchers, people in business, managers at stores and anyone else who would like to visualize data on the go.
-		
-
-\newpage
 \section{Software Architecture}
-In this section we discuss the software architecture, including architecture scope, requirements, access and integration requirements, quality requirements and architectural constraints.
+In this section we discuss the software architecture, including architectural scope and requirements, access and integration requirements, quality requirements, and architectural constraints.
 
 \subsection{Architectural Scope}
 The ViZARD app will be a partially online application, with a small amount of processing happening remotely, which will allow a user to take a picture - using a cellphone's built-in camera - and generate a 3D graph from information in the image. Tesseract and OpenOCR - an open source OCR (Optical Character Recognition)library and API - is used to evaluate the image and find relevant information for generating the graph. 
 Unity 3D will be used to generate a graph of the information and finally Vuforia AR (Augmented Reality) SDK is used to project the graph onto a image marker for viewing.
 
-The local application will run entirely as a Unity3D application. Processing of the data and images is handled with C\# scripts which are called from within the application. After an image has been taken by the user, it is sent in a POST request to the OpenOCR API for Tesseract to process. The results are returned and parsed into a JSON object to be used by the graph generation script to generate the models for the graphs.
+The local application will run entirely as a Unity3D application. Processing of the data and images is handled with C\# scripts which are called from within the application. After an image has been taken by the user, it is sent in a POST request to the OpenOCR API for Tesseract to process. The results are returned and parsed into a C\# object to be used by the graph generation script to generate the models for the graphs.
 
 Furthermore users will have the ability to share graphs via several social applications on their cellphone/tablet.
 And finally all these systems will be running on Android OS and iOS based devices.

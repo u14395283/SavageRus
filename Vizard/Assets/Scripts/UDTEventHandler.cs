@@ -151,6 +151,42 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		return str;
 	}
 
+	Color32[] RotateMatrix(Color32[] matrix, int w, int h) {
+		Color32[] ret = new Color32[w * h];
+
+		Color32[,] temp = new Color32[w,h];
+
+		for(int i = 0; i < w; i++){
+			for(int x = 0; x < h; x++){
+				temp[i,x] = matrix[i*w+x];
+			}
+		}
+
+		Color32[,] temp2 = new Color32[h,w];
+
+		for (int i = 0; i < w; ++i) {
+			for (int j = 0; j < h; ++j) {
+				temp2[j,i] = temp[i,j];
+			}
+		}
+
+		Color32[,] temp3 = new Color32[w,h];
+
+		for (int i = 0; i < w; ++i) {
+			for (int j = 0; j < h; ++j) {
+				temp3[i,j] = temp2[(w-1)-i,j];
+			}
+		}
+
+		for(int i = 0; i < w; i++){
+			for(int x = 0; x < h; x++){
+				ret[i*w+x] = temp3[i,x] ;
+			}
+		}
+
+		return ret;
+	}
+
     /// <summary>
     /// Takes a new trackable source and adds it to the dataset
     /// This gets called automatically as soon as you 'BuildNewTarget with UserDefinedTargetBuildingBehaviour
@@ -224,10 +260,28 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
 		//Take screen shot
 		yield return new WaitForEndOfFrame();
-		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height,TextureFormat.RGB24,true);
+		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height-150,TextureFormat.RGB24,true);
 		screenTexture.ReadPixels(new Rect(0f, 0f+150, Screen.width, Screen.height-150),0,0);
 		screenTexture.Apply();
-
+		
+		/*	//Rotate pictures taken in landscape
+			if ((Input.deviceOrientation == DeviceOrientation.LandscapeLeft) || (Screen.orientation != ScreenOrientation.LandscapeLeft))
+			{
+				Texture2D screenTexture2 = new Texture2D(Screen.height-150, Screen.width, TextureFormat.RGB24,true);
+				Color32[] pixels = screenTexture.GetPixels32();
+				pixels = RotateMatrix(pixels, screenTexture.width, Screen.height-150);
+				screenTexture2.SetPixels32(pixels); 
+				screenTexture = screenTexture2;
+			}     
+			else if ((Input.deviceOrientation == DeviceOrientation.LandscapeRight) || (Screen.orientation != ScreenOrientation.LandscapeRight))
+			{
+				Texture2D screenTexture2 = new Texture2D(Screen.height-150, Screen.width, TextureFormat.RGB24,true);
+				Color32[] pixels = screenTexture.GetPixels32();
+				pixels = RotateMatrix(pixels, screenTexture.width, Screen.height-150);
+				screenTexture2.SetPixels32(pixels); 
+				screenTexture = screenTexture2;
+			}
+		*/
 
 		//Convert image to bytes
 		byte[] pData2 = screenTexture.EncodeToJPG();

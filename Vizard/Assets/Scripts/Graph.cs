@@ -118,8 +118,7 @@ public class Graph {
 			}
 
 			for (int c = 0; c < category_count; c++) {
-
-				Material material = new Material (Shader.Find ("Diffuse"));
+				Material material = new Material (Shader.Find("Diffuse"));
 				material.SetTextureScale ("_MainTex", new Vector2 (100, 100));
 				material.color = pieceColour[c];
 

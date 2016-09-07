@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.22)  3 SEP 2016 21:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.2.22)  5 SEP 2016 11:54
 entering extended mode
 **./ArchitecturalAndFunctionalSpecs.tex
 (ArchitecturalAndFunctionalSpecs.tex
@@ -408,7 +408,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks18
 \@floatcapt=\box27
 )
-No file ArchitecturalAndFunctionalSpecs.aux.
+(ArchitecturalAndFunctionalSpecs.aux)
 \openout1 = `ArchitecturalAndFunctionalSpecs.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -427,6 +427,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 \AtBeginShipoutBox=\box28
 Package hyperref Info: Link coloring OFF on input line 8.
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -438,6 +439,8 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 8.
 LaTeX Info: Redefining \pageref on input line 8.
 LaTeX Info: Redefining \nameref on input line 8.
+
+(ArchitecturalAndFunctionalSpecs.out) (ArchitecturalAndFunctionalSpecs.out)
 \@outlinefile=\write3
 \openout3 = `ArchitecturalAndFunctionalSpecs.out'.
 
@@ -455,7 +458,7 @@ LaTeX Info: Redefining \nameref on input line 8.
 \MPnumerator=\count104
 \makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks20
-) <../Images/SavageRus.png, id=3, 797.98125pt x 738.76pt>
+) <../Images/SavageRus.png, id=83, 797.98125pt x 738.76pt>
 File: ../Images/SavageRus.png Graphic file (type png)
 
 <use ../Images/SavageRus.png>
@@ -471,6 +474,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {C:/Users/JoDan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <../Images/S
 avageRus.png (PNG copy)>]
+(ArchitecturalAndFunctionalSpecs.toc)
 \tf@toc=\write4
 \openout4 = `ArchitecturalAndFunctionalSpecs.toc'.
 
@@ -509,24 +513,24 @@ Overfull \hbox (6.86775pt too wide) in paragraph at lines 201--201
  []
 
 
-<Images/class__GenerateGraph__serviceContract.png, id=58, 830.10126pt x 518.938
-75pt>
+<Images/class__GenerateGraph__serviceContract.png, id=147, 830.10126pt x 518.93
+875pt>
 File: Images/class__GenerateGraph__serviceContract.png Graphic file (type png)
  <use Images/class__GenerateGraph__serviceContract.png>
 Package pdftex.def Info: Images/class__GenerateGraph__serviceContract.png used 
 on input line 222.
 (pdftex.def)             Requested size: 390.0pt x 243.80623pt.
 
-<Images/class__DisplayGraph__serviceContract.png, id=59, 916.42375pt x 518.9387
-5pt>
+<Images/class__DisplayGraph__serviceContract.png, id=148, 916.42375pt x 518.938
+75pt>
 File: Images/class__DisplayGraph__serviceContract.png Graphic file (type png)
  <use Images/class__DisplayGraph__serviceContract.png>
 Package pdftex.def Info: Images/class__DisplayGraph__serviceContract.png used o
 n input line 226.
 (pdftex.def)             Requested size: 390.0pt x 220.84299pt.
  [9]
-<Images/class__ViewAllPreviousGraphs__serviceContract.png, id=69, 858.20625pt x
- 423.5825pt>
+<Images/class__ViewAllPreviousGraphs__serviceContract.png, id=153, 858.20625pt 
+x 423.5825pt>
 File: Images/class__ViewAllPreviousGraphs__serviceContract.png Graphic file (ty
 pe png)
  <use Images/class__ViewAllPreviousGraphs__serviceContract.png>
@@ -542,8 +546,8 @@ ng used on input line 230.
 l.232 	\end{figure}
                     <./Images/class__GenerateGraph__serviceContract.png (PNG co
 py)>]
-<Images/class__ViewPreviousGraph__serviceContract.png, id=76, 930.47626pt x 430
-.60875pt>
+<Images/class__ViewPreviousGraph__serviceContract.png, id=159, 930.47626pt x 43
+0.60875pt>
 File: Images/class__ViewPreviousGraph__serviceContract.png Graphic file (type p
 ng)
  <use Images/class__ViewPreviousGraph__serviceContract.png>
@@ -564,16 +568,18 @@ l.238
 l.238 
        <./Images/class__DisplayGraph__serviceContract.png (PNG copy)> <./Images
 /class__ViewAllPreviousGraphs__serviceContract.png (PNG copy)>]
-<Images/class__EditGraph__serviceContract.png, id=83, 872.25874pt x 455.7025pt>
+<Images/class__EditGraph__serviceContract.png, id=166, 872.25874pt x 455.7025pt
+>
 File: Images/class__EditGraph__serviceContract.png Graphic file (type png)
-<use Images/class__EditGraph__serviceContract.png>
+ <use Images/class__EditGraph__serviceContract.png>
 Package pdftex.def Info: Images/class__EditGraph__serviceContract.png used on i
 nput line 240.
 (pdftex.def)             Requested size: 390.0pt x 203.75002pt.
 
-<Images/class__SaveGraph__serviceContract.png, id=84, 837.1275pt x 376.40625pt>
+<Images/class__SaveGraph__serviceContract.png, id=167, 837.1275pt x 376.40625pt
+>
 File: Images/class__SaveGraph__serviceContract.png Graphic file (type png)
-<use Images/class__SaveGraph__serviceContract.png>
+ <use Images/class__SaveGraph__serviceContract.png>
 Package pdftex.def Info: Images/class__SaveGraph__serviceContract.png used on i
 nput line 245.
 (pdftex.def)             Requested size: 390.0pt x 175.35446pt.
@@ -591,16 +597,15 @@ l.248
 l.248 
        <./Images/class__ViewPreviousGraph__serviceContract.png (PNG copy)> <./I
 mages/class__EditGraph__serviceContract.png (PNG copy)>]
-<Images/class__ShareGraph__serviceContract.png, id=92, 891.33pt x 532.99126pt>
+<Images/class__ShareGraph__serviceContract.png, id=175, 891.33pt x 532.99126pt>
 File: Images/class__ShareGraph__serviceContract.png Graphic file (type png)
-
 <use Images/class__ShareGraph__serviceContract.png>
 Package pdftex.def Info: Images/class__ShareGraph__serviceContract.png used on 
 input line 250.
 (pdftex.def)             Requested size: 390.0pt x 233.2075pt.
 
-<Images/class__DetectGraphType__serviceContract.png, id=93, 879.285pt x 383.432
-5pt>
+<Images/class__DetectGraphType__serviceContract.png, id=176, 879.285pt x 383.43
+25pt>
 File: Images/class__DetectGraphType__serviceContract.png Graphic file (type png
 )
  <use Images/class__DetectGraphType__serviceContract.png>
@@ -621,7 +626,7 @@ l.258
 l.258 
        <./Images/class__SaveGraph__serviceContract.png (PNG copy)> <./Images/cl
 ass__ShareGraph__serviceContract.png (PNG copy)>]
-<Images/class__OCR__serviceContract.png, id=100, 858.20625pt x 364.36125pt>
+<Images/class__OCR__serviceContract.png, id=183, 858.20625pt x 364.36125pt>
 File: Images/class__OCR__serviceContract.png Graphic file (type png)
 
 <use Images/class__OCR__serviceContract.png>
@@ -629,7 +634,7 @@ Package pdftex.def Info: Images/class__OCR__serviceContract.png used on input l
 ine 260.
 (pdftex.def)             Requested size: 390.0pt x 165.5789pt.
 
-<Images/uc__GenerateGraph__functionalRequirements.png, id=101, 691.58376pt x 38
+<Images/uc__GenerateGraph__functionalRequirements.png, id=184, 691.58376pt x 38
 9.455pt>
 File: Images/uc__GenerateGraph__functionalRequirements.png Graphic file (type p
 ng)
@@ -638,7 +643,7 @@ Package pdftex.def Info: Images/uc__GenerateGraph__functionalRequirements.png u
 sed on input line 266.
 (pdftex.def)             Requested size: 390.0pt x 219.6265pt.
 
-<Images/uc__DisplayGraph__functionalRequirements.png, id=102, 593.21625pt x 340
+<Images/uc__DisplayGraph__functionalRequirements.png, id=185, 593.21625pt x 340
 .27126pt>
 File: Images/uc__DisplayGraph__functionalRequirements.png Graphic file (type pn
 g)
@@ -660,7 +665,7 @@ l.272 	\end{figure}
 l.272 	\end{figure}
                     <./Images/class__DetectGraphType__serviceContract.png (PNG 
 copy)> <./Images/class__OCR__serviceContract.png (PNG copy)>]
-<Images/uc__ViewAllPreviousGraphs__functionalRequirements.png, id=109, 579.1637
+<Images/uc__ViewAllPreviousGraphs__functionalRequirements.png, id=192, 579.1637
 6pt x 347.2975pt>
 File: Images/uc__ViewAllPreviousGraphs__functionalRequirements.png Graphic file
  (type png)
@@ -670,7 +675,7 @@ Package pdftex.def Info: Images/uc__ViewAllPreviousGraphs__functionalRequiremen
 ts.png used on input line 274.
 (pdftex.def)             Requested size: 390.0pt x 233.86456pt.
 
-<Images/uc__ViewPreviousGraph__functionalRequirements.png, id=110, 572.1375pt x
+<Images/uc__ViewPreviousGraph__functionalRequirements.png, id=193, 572.1375pt x
  347.2975pt>
 File: Images/uc__ViewPreviousGraph__functionalRequirements.png Graphic file (ty
 pe png)
@@ -693,7 +698,7 @@ l.280 	\end{figure}
 l.280 	\end{figure}
                     <./Images/uc__GenerateGraph__functionalRequirements.png (PN
 G copy)> <./Images/uc__DisplayGraph__functionalRequirements.png (PNG copy)>]
-<Images/uc__EditGraph.jpg, id=118, 636.3775pt x 262.9825pt>
+<Images/uc__EditGraph.jpg, id=200, 636.3775pt x 262.9825pt>
 File: Images/uc__EditGraph.jpg Graphic file (type jpg)
 
 <use Images/uc__EditGraph.jpg>
@@ -713,14 +718,14 @@ l.286
 l.286 
        <./Images/uc__ViewAllPreviousGraphs__functionalRequirements.png (PNG cop
 y)> <./Images/uc__ViewPreviousGraph__functionalRequirements.png (PNG copy)>]
-<Images/uc__SaveGraph.jpg, id=125, 446.66875pt x 220.825pt>
+<Images/uc__SaveGraph.jpg, id=207, 446.66875pt x 220.825pt>
 File: Images/uc__SaveGraph.jpg Graphic file (type jpg)
 
 <use Images/uc__SaveGraph.jpg>
 Package pdftex.def Info: Images/uc__SaveGraph.jpg used on input line 288.
 (pdftex.def)             Requested size: 390.0pt x 192.81367pt.
 
-<Images/uc__ShareGraph.jpg, id=126, 522.95375pt x 248.93pt>
+<Images/uc__ShareGraph.jpg, id=208, 522.95375pt x 248.93pt>
 File: Images/uc__ShareGraph.jpg Graphic file (type jpg)
 
 <use Images/uc__ShareGraph.jpg>
@@ -739,7 +744,7 @@ l.296
                                                   \fi \fi 
 l.296 
        <./Images/uc__EditGraph.jpg> <./Images/uc__SaveGraph.jpg>]
-<Images/act__GenerateGraph__GenerateGraph.png, id=133, 1006.76125pt x 415.5525p
+<Images/act__GenerateGraph__GenerateGraph.png, id=215, 1006.76125pt x 415.5525p
 t>
 File: Images/act__GenerateGraph__GenerateGraph.png Graphic file (type png)
  <use Images/act__GenerateGraph__GenerateGraph.png>
@@ -747,7 +752,7 @@ Package pdftex.def Info: Images/act__GenerateGraph__GenerateGraph.png used on i
 nput line 299.
 (pdftex.def)             Requested size: 390.0pt x 160.9742pt.
 
-<Images/act__DisplayGraph__DisplayGraph.png, id=134, 1003.75pt x 291.0875pt>
+<Images/act__DisplayGraph__DisplayGraph.png, id=216, 1003.75pt x 291.0875pt>
 File: Images/act__DisplayGraph__DisplayGraph.png Graphic file (type png)
 
 <use Images/act__DisplayGraph__DisplayGraph.png>
@@ -755,7 +760,7 @@ Package pdftex.def Info: Images/act__DisplayGraph__DisplayGraph.png used on inp
 ut line 303.
 (pdftex.def)             Requested size: 390.0pt x 113.1017pt.
 
-<Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png, id=135, 777.9062
+<Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png, id=217, 777.9062
 5pt x 208.78pt>
 File: Images/act__ViewAllPreviousGraphs__ViewAllPreviousGraphs.png Graphic file
  (type png)
@@ -778,7 +783,7 @@ l.309 	\end{figure}
 l.309 	\end{figure}
                     <./Images/uc__ShareGraph.jpg> <./Images/act__GenerateGraph_
 _GenerateGraph.png (PNG copy)>]
-<Images/act__ViewPreviousGraph__ViewPreviousGraph.png, id=144, 992.70876pt x 27
+<Images/act__ViewPreviousGraph__ViewPreviousGraph.png, id=225, 992.70876pt x 27
 1.0125pt>
 File: Images/act__ViewPreviousGraph__ViewPreviousGraph.png Graphic file (type p
 ng)
@@ -787,7 +792,7 @@ Package pdftex.def Info: Images/act__ViewPreviousGraph__ViewPreviousGraph.png u
 sed on input line 311.
 (pdftex.def)             Requested size: 390.0pt x 106.47188pt.
 
-<Images/act__EditGraph.jpg, id=145, 869.2475pt x 355.3275pt>
+<Images/act__EditGraph.jpg, id=226, 869.2475pt x 355.3275pt>
 File: Images/act__EditGraph.jpg Graphic file (type jpg)
 
 <use Images/act__EditGraph.jpg>
@@ -814,14 +819,14 @@ l.319
        <./Images/act__DisplayGraph__DisplayGraph.png (PNG copy)> <./Images/act_
 _ViewAllPreviousGraphs__ViewAllPreviousGraphs.png (PNG copy)> <./Images/act__Vi
 ewPreviousGraph__ViewPreviousGraph.png (PNG copy)>]
-<Images/act__SaveGraph.jpg, id=153, 779.91376pt x 320.19624pt>
+<Images/act__SaveGraph.jpg, id=234, 779.91376pt x 320.19624pt>
 File: Images/act__SaveGraph.jpg Graphic file (type jpg)
 
 <use Images/act__SaveGraph.jpg>
 Package pdftex.def Info: Images/act__SaveGraph.jpg used on input line 321.
 (pdftex.def)             Requested size: 390.0pt x 160.11238pt.
 
-<Images/act__ShareGraph.jpg, id=154, 868.24374pt x 320.19624pt>
+<Images/act__ShareGraph.jpg, id=235, 868.24374pt x 320.19624pt>
 File: Images/act__ShareGraph.jpg Graphic file (type jpg)
 
 <use Images/act__ShareGraph.jpg>
@@ -854,24 +859,16 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 342.
 (ArchitecturalAndFunctionalSpecs.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 342.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 342.
-
-
-Package rerunfilecheck Warning: File `ArchitecturalAndFunctionalSpecs.out' has 
-changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `ArchitecturalAndFunctionalSpecs.out
-':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  FE3F885180478AE52C22CD1A9F236EFC;1344.
+Package rerunfilecheck Info: File `ArchitecturalAndFunctionalSpecs.out' has not
+ changed.
+(rerunfilecheck)             Checksum: FE3F885180478AE52C22CD1A9F236EFC;1344.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 342.
  ) 
 Here is how much of TeX's memory you used:
- 5423 strings out of 493634
- 81894 string characters out of 3143744
- 158359 words of memory out of 3000000
- 8697 multiletter control sequences out of 15000+200000
+ 5452 strings out of 493634
+ 82481 string characters out of 3143744
+ 158497 words of memory out of 3000000
+ 8718 multiletter control sequences out of 15000+200000
  10051 words of font info for 35 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  29i,5n,28p,522b,383s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -880,10 +877,10 @@ ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on ArchitecturalAndFunctionalSpecs.pdf (23 pages, 1281083 bytes)
+Output written on ArchitecturalAndFunctionalSpecs.pdf (23 pages, 1291342 bytes)
 .
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
+ 285 PDF objects out of 1000 (max. 8388607)
  67 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 words of extra memory for PDF output out of 10000 (max. 10000000)
 
