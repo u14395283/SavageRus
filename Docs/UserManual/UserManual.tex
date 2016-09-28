@@ -89,42 +89,14 @@ This is the user manual for the vizARD Augmented Reality application being devel
 VizARD is a mobile application which will allow a user to take a picture of tabulated data and then view, automatically generated, 3D graphs of the data projected onto the document of which the image was taken.
 
 
-\section{Vision}
-EPI-USE Labs (henceforth referred to as "the client") intends for the VizARD application to be used by a large variety of mobile device users across both Android and iOS platforms. VizARD helps to simplify the analysis of numerical data through visualization, in the form of automatically generated 3D graphs.
-
-Fundamentally, the system will allow a user to take a picture of a table of numerical data which he/she may need to interpret. The application will then use OCR (Optical Character Recognition) to read the data from the picture. It will then decide on an appropriate graph for the type of data and generate a graph for the data. After the graph is generated, it will project a 3D model of the graph onto the image (or, ideally, onto a live stream of the paper) for the user to view.
-
-Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
-
-Typically usage will be as follows:
-\begin{itemize}
-	\item The user (possibly a businessman) finds tabular data he/she would like to analyse more easily.
-	\item The user opens the app.
-	\item Once the app is open and loaded, the user takes a picture of the table he/she would like to analyse.
-	\item The user receives a notification that the graph has been generated and the generated graph is displayed on the screen (mapped onto the paper).
-	\item The user taps on the "Share" button and is presented with several options through which he/she can share the graph.
-	\item An option is selected and an image of the graph is sent to the other user.
-\end{itemize}
-
-\newpage
-\section{Background}
-
-It is much simpler for us to recognize patterns and make quick analysis of data if it is presented to us in visual form. A simple example for the use of such an application would be a principal at a school who is presented with the Mathematics results of a particular grade for several quarters, such an application would make it very simple for him to quickly visualize the numeric data and see the trend.
-\newline
-\newline
-The problem at hand is that there is a lot of information to go around and so little time to process. In a society that demands us to make decisions quickly, it would be wise to have a tool that aids the decision making process by making the information easier to digest and that is what vizARD intends to do.
-\newline
-\newline
-Potential users could range from students, researchers, people in business, managers at stores and anyone else who would like to visualize data on the go.
-		
-
-\newpage
 
 %%--------------------------------------INSTALLATION  ----------------------------------------
 \section{Installation}
 To access the VizARD application one must first install it, currently this is done by getting the vizARD apk file, and installing it onto your android mobile phone (allow for the installation from unknown sources). In the future this app will be available through the Google play store.
 
 %%-------------------------------------GETTING STARTED ----------------------------------------
+\newpage
+
 \section{Getting Started}
 Once the app has been installed the user simply need to click on the application named VizARD, this will bring the user into a launching screen shown in figure 1.\\
 \begin{figure}[H]
@@ -173,7 +145,7 @@ Once the app has completed generating the graph it will then bring you to a disp
 
 \begin{figure}[H]
 \centering
-	\includegraphics[width=\textwidth]{images/graph.png}
+	\includegraphics[width=8cm]{images/graph.png}
 	\caption{display screen \label{overflow}}
 \end{figure}
 
@@ -192,14 +164,20 @@ Once the app has completed generating the graph it will then bring you to a disp
 \newpage
 %------------------------on edit click------------------------------------
 \subsection{On Edit Button click}
-The edit button has not yet been implemented but once it has when a user clicks it, it will allow for the user to change the style of graph (bar to pie, pie to line, etc...), switch graph axis (switch the data on the x axis with the data on the y axis) and possibly to change the data that has been used to draw the graph. 
+When the edit button is clicked a screen containing a form is showen, this form will allow the user to edit data and the graph. 
+%-----------------------------form-----------------
+\subsection{Form}
+When the form is brought up from the edit button you see the following screen. 
+\begin{figure}[H] 
+\centering
+    \includegraphics[width=85mm]{images/form.jpg}
+    \caption{Edit form}
+\end{figure}
+The form contains a table that displays all the data that the OCR has read and generated the graph from, it also allows for the switching of axis, when the switch axis button is clicked, and you can cycle through graph type by pressing the "Cycle graph" button. 
 
 %------------------------on Share click------------------------------------
 
 \subsection{On Share Button Click}
-The share button has also yet to be implemented but once it has when a user clicks it the app will take a screen capture of the graph and open up genral sharing option such as share to facebook or whatsapp.
-
-\subsection{Improvements}
-For the display screen we are contemplating having a hamburger menu that hides these two buttons until clicked so that they take up less screen real estate from the graph.
+The share button has not been implemented but once it has when a user clicks it the app will take a screen capture of the graph and open up genral sharing option such as share to facebook or whatsapp.
 
 \end{document}
