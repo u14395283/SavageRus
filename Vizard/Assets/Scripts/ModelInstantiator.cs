@@ -7,10 +7,10 @@ using Vuforia;
 public class ModelInstantiator : MonoBehaviour {
 	public TrackableBehaviour theTrackable;
 	private GameObject trackableGameObject;
+	private static bool reset = false;
 
-	private bool modelset = false;
 	//Reference to model
-	Graph graph = null;
+	public Graph graph = null;
 
 	void Start () {
 		Input.simulateMouseWithTouches = true;
@@ -60,7 +60,14 @@ public class ModelInstantiator : MonoBehaviour {
 
 	#region Update
 	void Update () {
-		if (!modelset && theTrackable != null) {
+		if (reset) {
+			graph = null;
+			theTrackable = null;
+			trackableGameObject = null;
+			reset = false;
+		}
+
+		if (trackableGameObject.transform.childCount == 0 && theTrackable != null) {
 			SetModel ();
 		} 
 			
@@ -138,7 +145,12 @@ public class ModelInstantiator : MonoBehaviour {
 
 			
 					//If single finger
-				} else if (Input.touchCount == 1) {
+				}
+
+
+
+
+				else if (Input.touchCount == 1) {
 
 					Touch touch = Input.GetTouch (0);
 
@@ -151,15 +163,14 @@ public class ModelInstantiator : MonoBehaviour {
 						else{ //If finger dragging
 							Vector2 direction = Input.GetTouch(0).position - lastPosition;
 
-							float swipeSpeed = 5.0f * (defaultScale.x / graph.Model.transform.localScale.x);
+							float swipeSpeed = 15.0f;
 
-							//Check whether a greater distance was moved across the x-axis or y-axis
 							if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x)){
-								//X movement greater than Y movement
+
 								float swipeValue = touch.position.x - lastPosition.x;
 								float newWidth = (graph.Model.transform.localScale.x / defaultScale.x);
 
-								if (direction.y > 0) { //If moving right - finger moved from lower x value to higher x value
+								if (direction.y > 0) {
 									if (graph.Model.transform.localPosition.x + ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed) <= (newWidth / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x + ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed),
@@ -172,7 +183,7 @@ public class ModelInstantiator : MonoBehaviour {
 											graph.Model.transform.localPosition.z);
 									}
 
-								} else { //If moving left - finger moved from higher x value to lower x value
+								} else {
 									if (graph.Model.transform.localPosition.x - ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed) >= -(newWidth / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x - ((Mathf.Abs (swipeValue / Screen.width)) / swipeSpeed),
@@ -187,14 +198,12 @@ public class ModelInstantiator : MonoBehaviour {
 								}
 							}
 							else{
-								//Y movement greater than X movement
 								float swipeValue = touch.position.y - lastPosition.y;
-								//Adjust for fact that target and model are not perfect squares
-								//	- Dimensions of target can be ignored because only the center is required and target would always be bound to 1f*1f square
+
 								float heightRatio = graph.Model.transform.Find ("Graph Base").transform.lossyScale.z / graph.Model.transform.Find ("Graph Base").transform.lossyScale.x;
 								float newHeight = (graph.Model.transform.localScale.y / defaultScale.y) * heightRatio;
 
-								if (direction.x > 0) {  //If moving up - finger moved from lower y value to higher y value
+								if (direction.x > 0) {
 									if (graph.Model.transform.localPosition.z + ((Mathf.Abs (swipeValue / Screen.height)) / swipeSpeed) <= (newHeight / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x,
@@ -207,7 +216,7 @@ public class ModelInstantiator : MonoBehaviour {
 											(newHeight / 2));
 									}
 
-								} else {  //If moving down - finger moved from higher y value to lower y value
+								} else {
 									if (graph.Model.transform.localPosition.z - ((Mathf.Abs (swipeValue / Screen.height)) / swipeSpeed) >= -(newHeight / 2)) {
 										graph.Model.transform.localPosition = new Vector3 (
 											graph.Model.transform.localPosition.x,
@@ -228,6 +237,14 @@ public class ModelInstantiator : MonoBehaviour {
 						swiping = false;
 					}
 				}
+
+
+
+
+
+
+
+
 			}
 		}
 			
@@ -240,7 +257,7 @@ public class ModelInstantiator : MonoBehaviour {
 		trackableGameObject = theTrackable.gameObject;
 
 		trackableGameObject.transform.position = new Vector3 (0f, 0f, 0f);
-		trackableGameObject.transform.eulerAngles = new Vector3 (0f, 180f, 0f);
+		trackableGameObject.transform.eulerAngles = new Vector3 (0f, 90f, 0f);
 
 		foreach (Transform child in trackableGameObject.transform)
 			GameObject.Destroy (child.gameObject);
@@ -266,12 +283,14 @@ public class ModelInstantiator : MonoBehaviour {
 				graph.Model.transform.localScale.z * scale); 
 
 			defaultScale = graph.Model.transform.localScale; //This is for zooming the graph - Do no change
-
-			modelset = true;
 		}
 		
 		
 	}
 	#endregion
+
+	public static void resetGraph(){
+		reset = true;
+	}
 
 }

@@ -1,5 +1,6 @@
 /*============================================================================== 
  * Copyright (c) 2015 Qualcomm Connected Experiences, Inc. All Rights Reserved. 
+ * And TheSavageRu's
  * ==============================================================================*/
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ using System.Linq;
 using Vuforia;
 using System;
 using System.IO;
+using AssemblyCSharp;
+using UnityEngine.SceneManagement;
+
 
 public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 {
@@ -18,11 +22,18 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     /// </summary>
     public ImageTargetBehaviour ImageTargetTemplate;
     public GameObject takePhoto;
+	public GameObject backBtn;
     public GameObject viewGraphs;
     public GameObject editGraph;
     public GameObject shareGraph;
-    public GameObject switchStyle;
-    public GameObject editData;
+	public GameObject form;
+	public GameObject UI;
+	public GameObject loadScreen;
+	public GameObject frameCanvas;
+
+	private bool isProcessing = false;
+	public string message = "Shared muthafucker";
+
     protected bool editClicked = false;
     public int LastTargetIndex
     {
@@ -58,12 +69,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
         viewGraphs = GameObject.Find("viewGraphs");
         editGraph = GameObject.Find("editGraph");
         shareGraph = GameObject.Find("shareGraph");
-        switchStyle = GameObject.Find("switchGraph");
-        editData = GameObject.Find("editData");
+		backBtn = GameObject.Find("backBtn");
+		form = GameObject.Find("Form");
+		loadScreen = GameObject.Find ("LoadScreen");
+
+		backBtn.SetActive (false);
+		form.SetActive (false);
         shareGraph.SetActive(false);
-        editData.SetActive(false);
-        switchStyle.SetActive(false);
         editGraph.SetActive(false);
+		loadScreen.SetActive (false);
+
         mTargetBuildingBehaviour = GetComponent<UserDefinedTargetBuildingBehaviour>();
         if (mTargetBuildingBehaviour)
         {
@@ -112,79 +127,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 	/// <summary>
 	/// Finds non-digit characters in str parameter and replaces them with nearest estimate digits.
 	/// </summary>
-	public string sanitizeString(string str){
-		str = str.Replace ('B', '8');
-		str = str.Replace ('O', '0');
-		str = str.Replace ("%", "");
-		str = str.Replace ('E', '8');
-		str = str.Replace ('E', '3');
-		str = str.Replace ('I', '1');
-		str = str.Replace ('l', '1');
-		str = str.Replace ('A', '4');
-		str = str.Replace ('H', '4');
-		str = str.Replace ('G', '6');
-		str = str.Replace ('b', '6');
-		str = str.Replace ('T', '7');
-		str = str.Replace ('J', '7');
-		str = str.Replace ('S', '5');
-		str = str.Replace ("M", "44");
-		str = str.Replace ('Q', '9');
-		str = str.Replace ("R", "12");
-		str = str.Replace ('Z', '2');
-
-		float temp = 0;
-
-		if(!Single.TryParse (str, out temp)){
-			for(int i = 0; i < str.Length; i++){
-				if (!Char.IsDigit (str [i])) {
-					if (i == 0 || i == str.Length - 1) {
-						if (str [i] != '-' && str [i] != '+') {
-							str = str.Replace ("" + str [i], "");
-						}
-					} else {
-						str = str.Replace ("" + str[i], "");
-					}
-				}
-			}
-		}
-
-		return str;
-	}
-
-	Color32[] RotateMatrix(Color32[] matrix, int w, int h) {
-		Color32[] ret = new Color32[w * h];
-
-		Color32[,] temp = new Color32[w,h];
-
-		for(int i = 0; i < w; i++){
-			for(int x = 0; x < h; x++){
-				temp[i,x] = matrix[i*w+x];
-			}
-		}
-
-		Color32[,] temp2 = new Color32[h,w];
-
-		for (int i = 0; i < w; ++i) {
-			for (int j = 0; j < h; ++j) {
-				temp2[j,i] = temp[i,j];
-			}
-		}
-
-		Color32[,] temp3 = new Color32[w,h];
-
-		for (int i = 0; i < w; ++i) {
-			for (int j = 0; j < h; ++j) {
-				temp3[i,j] = temp2[(w-1)-i,j];
-			}
-		}
-
-		for(int i = 0; i < w; i++){
-			for(int x = 0; x < h; x++){
-				ret[i*w+x] = temp3[i,x] ;
-			}
-		}
-
-		return ret;
+		
+	public void editDataClicked(){
+		UI.GetComponent<UI> ().initialiseForm (Dataset.dataset);
+		form.SetActive (true);
 	}
 
     /// <summary>
@@ -200,7 +146,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
 		// Destroy the oldest target if the dataset is full or the dataset 
 		// already contains five user-defined targets.
-		if (mBuiltDataSet.HasReachedTrackableLimit() || mBuiltDataSet.GetTrackables().Count() >= MAX_TARGETS - 1)
+		if (mBuiltDataSet.HasReachedTrackableLimit() || mBuiltDataSet.GetTrackables().Count() >= MAX_TARGETS)
 		{
 			IEnumerable<Trackable> trackables = mBuiltDataSet.GetTrackables();
 			foreach (Trackable trackable in trackables)
@@ -209,13 +155,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 			}
 		}
 
-		/*
-		// Get predefined trackable and instantiate it
-		ImageTargetBehaviour imageTargetCopy = (ImageTargetBehaviour)Instantiate(ImageTargetTemplate);
-		imageTargetCopy.gameObject.name = "UserDefinedTarget-" + mTargetCounter;
 
-		// Add the duplicated trackable to the data set and activate it
-		mBuiltDataSet.CreateTrackable(trackableSource, imageTargetCopy.gameObject);*/
+		// Get predefined trackable and instantiate it       -----  Add more targets
+		/*ImageTargetBehaviour imageTargetCopy = (ImageTargetBehaviour)Instantiate(ImageTargetTemplate);
+		imageTargetCopy.gameObject.name = "UserDefinedTarget-" + mTargetCounter;*/
 
 		// Add the duplicated trackable to the data set and activate it
 		mBuiltDataSet.CreateTrackable(trackableSource, ImageTargetTemplate.gameObject);
@@ -233,70 +176,112 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 	}
     #endregion IUserDefinedTargetEventHandler implementation
 
+    //function called from a button
+	public void ButtonShare ()
+	{
+		shareGraph.SetActive(false);
+		if(!isProcessing){
+			StartCoroutine( ShareScreenshot() );
+		}
+	}
+	public IEnumerator ShareScreenshot()
+	{
+		isProcessing = true;
+		// wait for graphics to render
+		yield return new WaitForEndOfFrame();
+		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
+		// create the texture
+		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height,TextureFormat.RGB24,true);
+		// put buffer into texture
+		screenTexture.ReadPixels(new Rect(0f, 0f, Screen.width, Screen.height),0,0);
+		// apply
+		screenTexture.Apply();
+		//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- PHOTO
+		byte[] dataToSave = screenTexture.EncodeToPNG();
+		string destination = Path.Combine(Application.persistentDataPath,System.DateTime.Now.ToString("yyyy-MM-dd-HHmmss") + ".png");
+		File.WriteAllBytes(destination, dataToSave);
+		if(!Application.isEditor)
+		{
+			// block to open the file and share it ------------START
+			AndroidJavaClass intentClass = new AndroidJavaClass("android.content.Intent");
+			AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
+			intentObject.Call<AndroidJavaObject>("setAction", intentClass.GetStatic<string>("ACTION_SEND"));
+			AndroidJavaClass uriClass = new AndroidJavaClass("android.net.Uri");
+			AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("parse","file://" + destination);
+			intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_STREAM"), uriObject);
+
+			intentObject.Call<AndroidJavaObject> ("setType", "text/plain");
+			intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_TEXT"), ""+ message);
+			intentObject.Call<AndroidJavaObject>("putExtra", intentClass.GetStatic<string>("EXTRA_SUBJECT"), "SUBJECT");
+
+			intentObject.Call<AndroidJavaObject>("setType", "image/jpeg");
+			AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+			AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
+
+			currentActivity.Call("startActivity", intentObject);
+		}
+		isProcessing = false;
+		shareGraph.SetActive(true);
+	}
+
+	public void resetApp(){
+		ModelInstantiator.resetGraph ();
+
+		int scene = SceneManager.GetActiveScene ().buildIndex;
+		SceneManager.LoadScene (scene, LoadSceneMode.Single);
+	}
 
 	IEnumerator UploadFileCo(string uploadURL)
 	{
-		/*
-		//Generate mock data
-		int series_count = (int)UnityEngine.Random.Range(1,5);
-		int category_count = (int)UnityEngine.Random.Range(1,20);
-
-		float[,] values = new float[series_count, category_count];
-
-		for (int s = 0; s < series_count; s++){
-			for (int c = 0; c < category_count; c++) {
-				values [s, c] = UnityEngine.Random.Range (1, 100) / 100f;
-			}
-		}
-
-		string[] categories = { "John", "Jane","Peter","Mary","Robert","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas","Apples", "Pears", "Bananas" };
-		string[] series = { "Apples", "Pears", "Bananas", "Apples", "Pears", "Bananas" };
-
-		Dataset.Types type = Dataset.Types.Bar;
-
-
-		Dataset.dataset = new Dataset (type, "", categories, series, "Employees", "Fruit", values, category_count, series_count);
-		*/
-
 		//Take screen shot
 		yield return new WaitForEndOfFrame();
-		Texture2D screenTexture = new Texture2D(Screen.width, Screen.height-150,TextureFormat.RGB24,true);
-		screenTexture.ReadPixels(new Rect(0f, 0f+150, Screen.width, Screen.height-150),0,0);
+		Texture2D screenTexture = new Texture2D((int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)), TextureFormat.RGB24, true);
+
+		//screenTexture.ReadPixels(new Rect(FrameCoordinates.left, FrameCoordinates.bottom, FrameCoordinates.size.x, FrameCoordinates.size.y),0,0);
+		screenTexture.ReadPixels(new Rect(FrameCoordinates.left + FrameCoordinates.borderWidth, FrameCoordinates.bottom + FrameCoordinates.borderWidth, FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2), FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)),0,0);
+		//screenTexture.ReadPixels(new Rect(0f, 0f+150, Screen.width, Screen.height-150),0,0);
+
 		screenTexture.Apply();
-		
-		/*	//Rotate pictures taken in landscape
-			if ((Input.deviceOrientation == DeviceOrientation.LandscapeLeft) || (Screen.orientation != ScreenOrientation.LandscapeLeft))
-			{
-				Texture2D screenTexture2 = new Texture2D(Screen.height-150, Screen.width, TextureFormat.RGB24,true);
-				Color32[] pixels = screenTexture.GetPixels32();
-				pixels = RotateMatrix(pixels, screenTexture.width, Screen.height-150);
-				screenTexture2.SetPixels32(pixels); 
-				screenTexture = screenTexture2;
-			}     
-			else if ((Input.deviceOrientation == DeviceOrientation.LandscapeRight) || (Screen.orientation != ScreenOrientation.LandscapeRight))
-			{
-				Texture2D screenTexture2 = new Texture2D(Screen.height-150, Screen.width, TextureFormat.RGB24,true);
-				Color32[] pixels = screenTexture.GetPixels32();
-				pixels = RotateMatrix(pixels, screenTexture.width, Screen.height-150);
-				screenTexture2.SetPixels32(pixels); 
-				screenTexture = screenTexture2;
-			}
-		*/
+
+		//Rotate pictures taken in landscape
+		if (!(Input.deviceOrientation == DeviceOrientation.Portrait))
+		{
+			Debug.Log ("###---ORIENTATION SWITCHED TO LANDSCAPE---###");
+			Texture2D screenTexture2 = new Texture2D((int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), TextureFormat.RGB24,true);
+			Color32[] pixels = screenTexture.GetPixels32();
+			pixels = Helpers.RotateMatrix(pixels, (int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)));
+			screenTexture2.SetPixels32(pixels); 
+			screenTexture = screenTexture2;
+		}
 
 		//Convert image to bytes
 		byte[] pData2 = screenTexture.EncodeToJPG();
-		UnityEngine.Object.Destroy(screenTexture);
+		//UnityEngine.Object.Destroy(screenTexture);
 
+		loadScreen.SetActive (true);
 		//Create post request
 		WWWForm postForm = new WWWForm();
 
-		string postData = 
-			"--09sad98as09dhidp0a98soakscajbva12\n"+
+		string postData = null;
+
+		bool sw = false;
+
+		if (!sw) {
+			postData = "--09sad98as09dhidp0a98soakscajbva12\n"+
+				"Content-Type: application/json; charset=UTF-8\n\n"+
+				"{\"engine\":\"tesseract\"}\n\n"+
+				"--09sad98as09dhidp0a98soakscajbva12\n"+
+				"Content-Type: image/jpeg\n"+
+				"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
+		} else {
+			postData = "--09sad98as09dhidp0a98soakscajbva12\n"+
 			"Content-Type: application/json; charset=UTF-8\n\n"+
-			"{\"engine\":\"tesseract\"}\n\n"+
+			"{\"engine\":\"tesseract\", \"preprocessors\":[\"stroke-width-transform\"]}\n\n"+
 			"--09sad98as09dhidp0a98soakscajbva12\n"+
 			"Content-Type: image/jpeg\n"+
 			"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
+		}
+			
 
 		byte[] pData1 = System.Text.Encoding.UTF8.GetBytes(postData.ToCharArray());
 
@@ -325,55 +310,96 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 			result += "\n";
 
 			MakeDataset (result);
+			backBtn.SetActive(true);
+			shareGraph.SetActive(true);
+			editGraph.SetActive(true);
+			viewGraphs.SetActive(false);
+			takePhoto.SetActive(false);
+			frameCanvas.SetActive (false);
 		}
 		else
 		{
 			Debug.Log("WWW Error: "+ upload.error);
 			Debug.Log("WWW Error: "+ upload.text);
+			loadScreen.SetActive (false);
 		}
+
+
 	}
 	void UploadFile(string uploadURL)
-	{
-		StartCoroutine(UploadFileCo(uploadURL));
+	{	
+		 StartCoroutine(UploadFileCo(uploadURL));
 	}
 
 	//Generates a Dataset from the OCR result
 	void MakeDataset(string text){
-		Dataset.Types type = Dataset.Types.Bar;
+		Dataset.Types type = Dataset.Types.Null;
 		string firstline = text.Substring(0, text.IndexOf("\n"));
-		text = text.Replace(firstline, null);
+		try{	
+			text = text.Replace(firstline, null);
+		} catch {
+			resetApp ();
+		}
 		Debug.Log ("Title: " + firstline+"\n");
 		text = text.TrimStart();
 
-		string cats = text.Substring(0, text.IndexOf("\n"));
-		text = text.Replace(cats, "");
-		string[] tempCats = cats.Split (' ');
+		string ser = text.Substring(0, text.IndexOf("\n"));
+		try{
+			text = text.Replace(ser, "");
+		} catch {
+			resetApp ();
+		}
+		string[] tempSer = ser.Split (' ');
 
-		string[] categories = new string[tempCats.Length - 1];
-		for(int i = 1; i < tempCats.Length; i++){
-			categories [i - 1] = tempCats [i];
+		string[] series = new string[tempSer.Length - 1];
+
+		for(int i = 1; i < tempSer.Length; i++){
+			series [i - 1] = tempSer [i];
 		}
 
-		Debug.Log ("Categories: " + cats+"\n");
+		Debug.Log ("Series: " + ser+"\n");
 		text = text.TrimStart();
 
+
+
 		System.Collections.Generic.List<string[]> tableList = new System.Collections.Generic.List<string[]>();
-		System.Collections.Generic.List<string> seriesList = new System.Collections.Generic.List<string>();
+		System.Collections.Generic.List<string> categoryList = new System.Collections.Generic.List<string>();
 		string temp = "";
+		bool success = true;
+
 		const int MIN_LENGTH = 1;
 		while(text.Length > MIN_LENGTH && text.IndexOf("\n") > 0){
 			temp = text.Substring(0, text.IndexOf("\n"));
 			text = text.Replace(temp, "");
+			string catName = "";
+
+			for(int x = 0; x < text.Length; x++){
+				if (!Char.IsDigit (text [x])) {
+					catName += text [x];
+				} else {
+					break;
+				}
+			}
+
+			try{
+				text = text.Replace(catName, "");
+			} catch {
+				resetApp ();
+			}
+
+			categoryList.Add (catName);
 
 			//Removes series entries from rows
-			string[] rowAndSeries = temp.Split(' ');
-			string[] row = new string[rowAndSeries.Length-1];
-			seriesList.Add (rowAndSeries [0]);
-			for(int i = 1; i < rowAndSeries.Length; i++){
-				if (!rowAndSeries [i].All (char.IsDigit)) {
-					row [i - 1] = sanitizeString( rowAndSeries [i] );
+			string[] rowAndCategory = temp.Split(' ');
+			string[] row = new string[rowAndCategory.Length-1];
+
+
+
+			for(int i = 0; i < rowAndCategory.Length; i++){
+				if (!rowAndCategory [i].All (char.IsDigit)) {
+					row [i - 1] = Helpers.sanitizeString( rowAndCategory [i] );
 				} else {
-					row [i - 1] = rowAndSeries [i];
+					row [i - 1] = rowAndCategory [i];
 				}
 			}
 
@@ -381,27 +407,26 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 			Debug.Log ("Row: " + string.Join("",tableList.ElementAt(tableList.Count-1))+"\n");
 			text = text.TrimStart();
 		}
-		string[] series = seriesList.ToArray ();
+		string[] categories = categoryList.ToArray ();
 
-		bool success = true;
-
-		float[,] table = new float[tableList.Count,categories.Length];
+		float[,] table = new float[series.Length, tableList.Count];
 		for(int i = 0; i < tableList.Count; i++){
-			for(int x = 0; x < categories.Length; x++){
+			for(int x = 0; x < series.Length; x++){
 				float tempFloat = 0;
-				try{
+
+				try{	
 					if (Single.TryParse (tableList.ElementAt (i) [x], out tempFloat)) {
-					} else if (Single.TryParse (sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
+					} else if (Single.TryParse (Helpers.sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
 					} else {
 						tempFloat = 0;
 						success = false;
 					}
-				} catch(Exception e){
+				}catch (Exception e){
 					tempFloat = 0;
 					success = false;
 				}
 
-				table [i, x] = tempFloat;
+				table [x, i] = tempFloat;
 			}
 		}
 
@@ -410,14 +435,21 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		string dbg = "";
 		for(int i = 0; i < tableList.Count; i++){
 			dbg = "";
-			dbg += series [i] + " ";
-			for(int x = 0; x < categories.Length; x++){
-				dbg += " : " + table[i,x];
+			dbg += categories [i] + " ";
+			for(int x = 0; x < series.Length; x++){
+				dbg += " : " + table[x,i];
 			}
 			Debug.Log (dbg);
 		}
 
-		Dataset.dataset = new Dataset (type, firstline, categories, series, tempCats[0], firstline, table, categories.Length, series.Length);
+		//Send to form
+		Dataset dataset = new Dataset (type, firstline, categories, series, "", "", table, categories.Length, series.Length);
+		UI.GetComponent<UI> ().initialiseForm (dataset);
+		loadScreen.SetActive (false);
+		form.SetActive (true);
+
+		//Create graph directly
+		//Dataset.dataset = new Dataset (type, firstline, categories, series, tempSer[0], firstline, table, categories.Length, series.Length);
 	}
 
 
@@ -427,26 +459,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     /// Instantiates a new user-defined target and is also responsible for dispatching callback to 
     /// IUserDefinedTargetEventHandler::OnNewTrackableSource
     /// </summary>
-
-    public void onEditClickYo()
-    {
-        if(!editClicked)
-        {
-            editData.SetActive(true);
-            switchStyle.SetActive(true);
-            //editData.transform.Translate(0, 200 * Time.deltaTime, 0);
-            //switchStyle.transform.Translate(0, 400 * Time.deltaTime, 0);
-            editClicked = true;
-        }
-        else
-        {
-            //editData.transform.Translate(0, -200 * Time.deltaTime, 0);
-            //switchStyle.transform.Translate(0, -400 * Time.deltaTime, 0);
-            editData.SetActive(false);
-            switchStyle.SetActive(false);
-            editClicked = false;
-        }
-    }
 
     public void BuildNewTarget()
     {
@@ -459,13 +471,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
             // generate a new target:
             mTargetBuildingBehaviour.BuildNewTarget(targetName, ImageTargetTemplate.GetSize().x);
-			UploadFile("http://105.255.168.115:9292/ocr-file-upload"); 
-
-
-            shareGraph.SetActive(true);
-            editGraph.SetActive(true);
-            viewGraphs.SetActive(false);
-            takePhoto.SetActive(false);
+			UploadFile("http://105.255.168.115:9292/ocr-file-upload");
 
         }
         else
@@ -521,6 +527,8 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
             }
         }
     }
+
+
     #endregion //PRIVATE_METHODS
 }
 
