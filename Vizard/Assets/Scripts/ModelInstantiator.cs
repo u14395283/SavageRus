@@ -55,15 +55,15 @@ public class ModelInstantiator : MonoBehaviour {
 	#endregion
 
 	private Vector3 defaultScale = Vector3.one;
-	private bool swiping = false;
+	//private bool swiping = false; -- used for moving the graph
 	private Vector2 lastPosition;
 
 	#region Update
 	void Update () {
 		if (reset) {
 			graph = null;
-			theTrackable = null;
-			trackableGameObject = null;
+			//theTrackable = null;
+			//trackableGameObject = null;
 			reset = false;
 		}
 
@@ -71,6 +71,8 @@ public class ModelInstantiator : MonoBehaviour {
 			SetModel ();
 		} 
 			
+
+		//   -- Moves and scales the graph, but it's not aesthetically pleasing
 		///////////////////////
 		///  Detect touch  ///
 		//////////////////////
@@ -101,44 +103,44 @@ public class ModelInstantiator : MonoBehaviour {
 						graph.Model.transform.localScale *= 1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f);
 					} else { //If fingers are moving closer -> shrink
 						//if ((graph.Model.transform.localScale.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f))) >= defaultScale.x) {
-							//Shrink
-							graph.Model.transform.localScale /= 1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f);
+						//Shrink
+						graph.Model.transform.localScale /= 1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f);
 
-							float newWidth = (graph.Model.transform.localScale.x / defaultScale.x);
-							float heightRatio = graph.Model.transform.Find ("Graph Base").transform.lossyScale.z / graph.Model.transform.Find ("Graph Base").transform.lossyScale.x;
-							float newHeight = (graph.Model.transform.localScale.y / defaultScale.y) * heightRatio;
+						float newWidth = (graph.Model.transform.localScale.x / defaultScale.x);
+						float heightRatio = graph.Model.transform.Find ("Graph Base").transform.lossyScale.z / graph.Model.transform.Find ("Graph Base").transform.lossyScale.x;
+						float newHeight = (graph.Model.transform.localScale.y / defaultScale.y) * heightRatio;
 
-							//Right edge
-							if (graph.Model.transform.localPosition.x >= (newWidth / 2)) {
-								graph.Model.transform.localPosition = new Vector3 (
-									graph.Model.transform.localPosition.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)),
-									graph.Model.transform.localPosition.y,
-									graph.Model.transform.localPosition.z);
-							}
+						//Right edge
+						if (graph.Model.transform.localPosition.x >= (newWidth / 2)) {
+							graph.Model.transform.localPosition = new Vector3 (
+								graph.Model.transform.localPosition.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)),
+								graph.Model.transform.localPosition.y,
+								graph.Model.transform.localPosition.z);
+						}
 
-							//Left edge
-							if (graph.Model.transform.localPosition.x <= -(newWidth / 2)) {
-								graph.Model.transform.localPosition = new Vector3 (
-									graph.Model.transform.localPosition.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)),
-									graph.Model.transform.localPosition.y,
-									graph.Model.transform.localPosition.z);
-							}
+						//Left edge
+						if (graph.Model.transform.localPosition.x <= -(newWidth / 2)) {
+							graph.Model.transform.localPosition = new Vector3 (
+								graph.Model.transform.localPosition.x / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)),
+								graph.Model.transform.localPosition.y,
+								graph.Model.transform.localPosition.z);
+						}
 
-							//Top edge
-							if (graph.Model.transform.localPosition.z >= (newHeight / 2)) {
-								graph.Model.transform.localPosition = new Vector3 (
-									graph.Model.transform.localPosition.x,
-									graph.Model.transform.localPosition.y,
-									graph.Model.transform.localPosition.z / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)));
-							}
+						//Top edge
+						if (graph.Model.transform.localPosition.z >= (newHeight / 2)) {
+							graph.Model.transform.localPosition = new Vector3 (
+								graph.Model.transform.localPosition.x,
+								graph.Model.transform.localPosition.y,
+								graph.Model.transform.localPosition.z / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)));
+						}
 
-							//Bottom edge
-							if (graph.Model.transform.localPosition.z <= -(newHeight / 2)) {
-								graph.Model.transform.localPosition = new Vector3 (
-									graph.Model.transform.localPosition.x,
-									graph.Model.transform.localPosition.y,
-									graph.Model.transform.localPosition.z / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)));
-							}
+						//Bottom edge
+						if (graph.Model.transform.localPosition.z <= -(newHeight / 2)) {
+							graph.Model.transform.localPosition = new Vector3 (
+								graph.Model.transform.localPosition.x,
+								graph.Model.transform.localPosition.y,
+								graph.Model.transform.localPosition.z / (1f + (Mathf.Abs (deltaMagnitudeDiff) / 10f)));
+						}
 
 						//}
 					}
@@ -146,9 +148,11 @@ public class ModelInstantiator : MonoBehaviour {
 			
 					//If single finger
 				}
+			}
+		}
 
 
-
+				/*
 
 				else if (Input.touchCount == 1) {
 
@@ -237,16 +241,13 @@ public class ModelInstantiator : MonoBehaviour {
 						swiping = false;
 					}
 				}
-
-
-
-
-
-
-
-
 			}
-		}
+		} */
+
+
+
+
+
 			
 
 	}

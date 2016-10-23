@@ -156,6 +156,34 @@ public class UI : MonoBehaviour {
 			datagrid_x_size = x;
 
 			drawGrid();
+
+			int series_count = datagrid_z_size - 1;
+			int category_count = datagrid_x_size - 1;
+
+			float[,] float_values = new float[series_count, category_count];
+
+			for (int c = 0; c < category_count; c++) {
+				for (int s = 0; s < series_count; s++){
+					float f = float.Parse(datagrid_values[s + 1,c + 1]);
+					float_values [s, c] = f;
+				}
+			}
+
+			string[] categories = new string[category_count];
+			string[] series = new string[series_count];
+
+			for (int c = 0; c < category_count; c++) {
+				categories [c] = datagrid_values [0, c + 1];
+			}
+
+			for (int s = 0; s < series_count; s++) {
+				series [s] = datagrid_values [s + 1, 0];
+			}
+				
+			Debug.Log("Values: " + category_count + " " + series_count);
+			dataset = new Dataset (type, "", categories, series, category_title, series_title, float_values, category_count, series_count);
+			Debug.Log("dataset values: " + dataset.categoriesCount + " " + dataset.seriesCount);
+
 		}
 		catch(UnityException e) {
 			print (e.Data);

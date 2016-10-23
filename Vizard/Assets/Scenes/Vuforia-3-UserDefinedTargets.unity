@@ -1279,7 +1279,6 @@ MonoBehaviour:
   ImageTargetTemplate: {fileID: 34}
   takePhoto: {fileID: 0}
   backBtn: {fileID: 0}
-  viewGraphs: {fileID: 0}
   editGraph: {fileID: 0}
   shareGraph: {fileID: 0}
   form: {fileID: 426325043}
@@ -2455,7 +2454,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 686.43866}
+  m_AnchoredPosition: {x: 0, y: 617}
   m_SizeDelta: {x: 0, y: 1180}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &499843520
@@ -6919,7 +6918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1446283589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6977,12 +6976,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 221532562}
-        m_MethodName: 
+      - m_Target: {fileID: 221532566}
+        m_MethodName: saveScreenshot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7592,7 +7591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1678306629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8090,7 +8089,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 213519798}
   m_HandleRect: {fileID: 213519797}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 0.10115785
   m_Size: 0.41827232
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8298,7 +8297,7 @@ GameObject:
   - 114: {fileID: 2076080951}
   - 114: {fileID: 2076080953}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

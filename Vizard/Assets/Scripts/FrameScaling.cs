@@ -43,7 +43,7 @@ public class FrameScaling : MonoBehaviour {
 
 			// Find the difference in the distances between each frame.
 			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-			float movement = 0.4f;
+			float movement = 0.3f;
 
 			Vector2 directionfingerone = touchZero.position - touchZero.deltaPosition;
 			Vector2 directionfingertwo = touchOne.position - touchOne.deltaPosition;
@@ -84,13 +84,13 @@ public class FrameScaling : MonoBehaviour {
 				} else { //If finger dragging
 					Vector2 direction = Input.GetTouch (0).position - lastPosition;
 
-					float swipeSpeed = 1f;
+					float swipeSpeed = 15f;
 
 					//Check whether a greater distance was moved across the x-axis or y-axis
 					if (Mathf.Abs (direction.x) > Mathf.Abs (direction.y)) {
 						//X movement greater than Y movement
-						float swipeValue = (touch.position.x - lastPosition.x) * swipeSpeed;
-						//float swipeValue = swipeSpeed;
+						//float swipeValue = (touch.position.x - lastPosition.x) * swipeSpeed;
+						float swipeValue = swipeSpeed;
 
 						if (direction.x > 0) { //If moving right - finger moved from lower x value to higher x value
 
@@ -101,13 +101,13 @@ public class FrameScaling : MonoBehaviour {
 						} else { //If moving left - finger moved from higher x value to lower x value
 
 							if (frame.GetComponent<RectTransform> ().localPosition.x >= 0 - (canvas.GetComponent<RectTransform> ().sizeDelta.x / 2) + (frame.GetComponent<RectTransform> ().sizeDelta.x / 2)) {
-								frame.GetComponent<RectTransform> ().localPosition = new Vector2 (frame.GetComponent<RectTransform> ().localPosition.x + swipeValue, frame.GetComponent<RectTransform> ().localPosition.y);
+								frame.GetComponent<RectTransform> ().localPosition = new Vector2 (frame.GetComponent<RectTransform> ().localPosition.x - swipeValue, frame.GetComponent<RectTransform> ().localPosition.y);
 							}
 						}
 					} else {
 						//Y movement greater than X movement
-						float swipeValue = (touch.position.y - lastPosition.y) * swipeSpeed;
-						//float swipeValue = swipeSpeed;
+						//float swipeValue = (touch.position.y - lastPosition.y) * swipeSpeed;
+						float swipeValue = swipeSpeed;
 
 						if (direction.y > 0) {  //If moving up - finger moved from lower y value to higher y value
 
@@ -118,7 +118,7 @@ public class FrameScaling : MonoBehaviour {
 						} else {  //If moving down - finger moved from higher y value to lower y value
 
 							if (frame.GetComponent<RectTransform> ().localPosition.y >= 0 - (canvas.GetComponent<RectTransform> ().sizeDelta.y / 2) + (frame.GetComponent<RectTransform> ().sizeDelta.y / 2)) {
-								frame.GetComponent<RectTransform> ().localPosition = new Vector2 (frame.GetComponent<RectTransform> ().localPosition.x, frame.GetComponent<RectTransform> ().localPosition.y + swipeValue);
+								frame.GetComponent<RectTransform> ().localPosition = new Vector2 (frame.GetComponent<RectTransform> ().localPosition.x, frame.GetComponent<RectTransform> ().localPosition.y - swipeValue);
 							}
 						}
 

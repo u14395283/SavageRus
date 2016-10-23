@@ -23,16 +23,16 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     public ImageTargetBehaviour ImageTargetTemplate;
     public GameObject takePhoto;
 	public GameObject backBtn;
-    public GameObject viewGraphs;
+    //public GameObject viewGraphs;
     public GameObject editGraph;
-    public GameObject shareGraph;
+    //public GameObject shareGraph;
 	public GameObject form;
 	public GameObject UI;
 	public GameObject loadScreen;
 	public GameObject frameCanvas;
 
 	private bool isProcessing = false;
-	public string message = "Shared muthafucker";
+	public string message = "Shared";
 
     protected bool editClicked = false;
     public int LastTargetIndex
@@ -61,21 +61,25 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     private TrackableSettings mTrackableSettings;
     #endregion //PRIVATE_MEMBERS
 
+	public void Awake(){
+		Application.targetFrameRate = 24;
+		Application.runInBackground = false;
+	}
 
     #region MONOBEHAVIOUR_METHODS
     public void Start()
     {
         takePhoto = GameObject.Find("takePhoto");
-        viewGraphs = GameObject.Find("viewGraphs");
+        //viewGraphs = GameObject.Find("viewGraphs");
         editGraph = GameObject.Find("editGraph");
-        shareGraph = GameObject.Find("shareGraph");
+        //shareGraph = GameObject.Find("shareGraph");
 		backBtn = GameObject.Find("backBtn");
 		form = GameObject.Find("Form");
 		loadScreen = GameObject.Find ("LoadScreen");
 
 		backBtn.SetActive (false);
 		form.SetActive (false);
-        shareGraph.SetActive(false);
+		//shareGraph.SetActive(false);
         editGraph.SetActive(false);
 		loadScreen.SetActive (false);
 
@@ -133,6 +137,10 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		form.SetActive (true);
 	}
 
+	public void saveScreenshot() {
+		Application.CaptureScreenshot (DateTime.Now.ToString()+".png");
+	}
+
     /// <summary>
     /// Takes a new trackable source and adds it to the dataset
     /// This gets called automatically as soon as you 'BuildNewTarget with UserDefinedTargetBuildingBehaviour
@@ -177,7 +185,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
     #endregion IUserDefinedTargetEventHandler implementation
 
     //function called from a button
-	public void ButtonShare ()
+	/*public void ButtonShare ()
 	{
 		shareGraph.SetActive(false);
 		if(!isProcessing){
@@ -222,7 +230,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		}
 		isProcessing = false;
 		shareGraph.SetActive(true);
-	}
+	}*/
 
 	public void resetApp(){
 		ModelInstantiator.resetGraph ();
@@ -249,7 +257,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 			Debug.Log ("###---ORIENTATION SWITCHED TO LANDSCAPE---###");
 			Texture2D screenTexture2 = new Texture2D((int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), TextureFormat.RGB24,true);
 			Color32[] pixels = screenTexture.GetPixels32();
-			pixels = Helpers.RotateMatrix(pixels, (int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)));
+			pixels = ImageManipulation.RotateMatrix(pixels, (int)(FrameCoordinates.size.x - (FrameCoordinates.borderWidth * 2)), (int)(FrameCoordinates.size.y - (FrameCoordinates.borderWidth * 2)));
 			screenTexture2.SetPixels32(pixels); 
 			screenTexture = screenTexture2;
 		}
@@ -264,22 +272,23 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
 		string postData = null;
 
+		//set true for Stroke-Width Transform preprocessing (attempts to remove artifacts that aren't characters)
 		bool sw = false;
 
 		if (!sw) {
 			postData = "--09sad98as09dhidp0a98soakscajbva12\n"+
-				"Content-Type: application/json; charset=UTF-8\n\n"+
-				"{\"engine\":\"tesseract\"}\n\n"+
-				"--09sad98as09dhidp0a98soakscajbva12\n"+
-				"Content-Type: image/jpeg\n"+
-				"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
+						"Content-Type: application/json; charset=UTF-8\n\n"+
+						"{\"engine\":\"tesseract\"}\n\n"+
+						"--09sad98as09dhidp0a98soakscajbva12\n"+
+						"Content-Type: image/jpeg\n"+
+						"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
 		} else {
 			postData = "--09sad98as09dhidp0a98soakscajbva12\n"+
-			"Content-Type: application/json; charset=UTF-8\n\n"+
-			"{\"engine\":\"tesseract\", \"preprocessors\":[\"stroke-width-transform\"]}\n\n"+
-			"--09sad98as09dhidp0a98soakscajbva12\n"+
-			"Content-Type: image/jpeg\n"+
-			"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
+						"Content-Type: application/json; charset=UTF-8\n\n"+
+						"{\"engine\":\"tesseract\", \"preprocessors\":[\"stroke-width-transform\"]}\n\n"+
+						"--09sad98as09dhidp0a98soakscajbva12\n"+
+						"Content-Type: image/jpeg\n"+
+						"Content-Disposition: attachment; filename=\"attachment.txt\". \n\n";
 		}
 			
 
@@ -311,9 +320,9 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
 			MakeDataset (result);
 			backBtn.SetActive(true);
-			shareGraph.SetActive(true);
+			//shareGraph.SetActive(true);
 			editGraph.SetActive(true);
-			viewGraphs.SetActive(false);
+			//viewGraphs.SetActive(false);
 			takePhoto.SetActive(false);
 			frameCanvas.SetActive (false);
 		}
@@ -371,18 +380,20 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 		while(text.Length > MIN_LENGTH && text.IndexOf("\n") > 0){
 			temp = text.Substring(0, text.IndexOf("\n"));
 			text = text.Replace(temp, "");
-			string catName = "";
 
-			for(int x = 0; x < text.Length; x++){
-				if (!Char.IsDigit (text [x])) {
-					catName += text [x];
+			string catName = ""; //The row name
+
+			//Remove the row name by assuming everything until the first digit is the name and removing that from the string.
+			for(int x = 0; x < temp.Length; x++){
+				if (!Char.IsDigit (temp [x])) {
+					catName += temp [x];
 				} else {
 					break;
 				}
 			}
 
 			try{
-				text = text.Replace(catName, "");
+				temp = temp.Replace(catName, "");
 			} catch {
 				resetApp ();
 			}
@@ -390,16 +401,14 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 			categoryList.Add (catName);
 
 			//Removes series entries from rows
-			string[] rowAndCategory = temp.Split(' ');
-			string[] row = new string[rowAndCategory.Length-1];
+			string[] prescreenRow = temp.Split(' ');
+			string[] row = new string[prescreenRow.Length];
 
-
-
-			for(int i = 0; i < rowAndCategory.Length; i++){
-				if (!rowAndCategory [i].All (char.IsDigit)) {
-					row [i - 1] = Helpers.sanitizeString( rowAndCategory [i] );
+			for(int i = 0; i < prescreenRow.Length; i++){
+				if (!prescreenRow [i].All (char.IsDigit)) {
+					row [i] = StringManipulation.sanitizeString( prescreenRow [i] );
 				} else {
-					row [i - 1] = rowAndCategory [i];
+					row [i] = prescreenRow [i];
 				}
 			}
 
@@ -416,7 +425,7 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 
 				try{	
 					if (Single.TryParse (tableList.ElementAt (i) [x], out tempFloat)) {
-					} else if (Single.TryParse (Helpers.sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
+					} else if (Single.TryParse (StringManipulation.sanitizeString (tableList.ElementAt (i) [x]), out tempFloat)) {
 					} else {
 						tempFloat = 0;
 						success = false;
@@ -429,8 +438,6 @@ public class UDTEventHandler : MonoBehaviour, IUserDefinedTargetEventHandler
 				table [x, i] = tempFloat;
 			}
 		}
-
-
 
 		string dbg = "";
 		for(int i = 0; i < tableList.Count; i++){
