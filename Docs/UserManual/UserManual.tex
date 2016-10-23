@@ -61,15 +61,15 @@ Ruan \textsc{Klinkert}\\
 %----------------------------------------------------------------------------------------
 
 \centering
-	\includegraphics[width=80mm]{SavageRu.jpg}
+	\includegraphics[width=60mm]{SavageRu.jpg}
 
 {\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
-
+\newpage
 \centering
 	\textsc{\LARGE Epi-Use labs project}\\[0.5cm]
 	\textsc{\Large VizARD}\\[0.5cm]
-	\textsc{\Large User Manual version 0.1}\\[0.5cm]
-	\includegraphics[width=\textwidth]{images/vizard.jpg}
+	\textsc{\Large User Manual version 1}\\[0.5cm]
+	\includegraphics[width=\textwidth]{images/vizard.png}
 %----------------------------------------------------------------------------------------
 
 \vfill % Fill the rest of the page with whitespace
@@ -84,7 +84,7 @@ Ruan \textsc{Klinkert}\\
 
 \section{Introduction}
 
-This is the user manual for the vizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
+This is the user manual for the VizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
 
 VizARD is a mobile application which will allow a user to take a picture of tabulated data and then view, automatically generated, 3D graphs of the data projected onto the document of which the image was taken.
 
@@ -92,23 +92,26 @@ VizARD is a mobile application which will allow a user to take a picture of tabu
 
 %%--------------------------------------INSTALLATION  ----------------------------------------
 \section{Installation}
-To access the VizARD application one must first install it, currently this is done by getting the vizARD apk file, and installing it onto your android mobile phone (allow for the installation from unknown sources). In the future this app will be available through the Google play store.
+To access the VizARD application one must first install it, currently this is done by getting the VizARD apk file, and installing it onto your Android mobile phone (allow for the installation from unknown sources). In the future this application will be available through the Google Play Store.
 
 %%-------------------------------------GETTING STARTED ----------------------------------------
-\newpage
+\section{Configuration}
+For the user VizARD is a stand alone mobile application, one simply ahs to install the apk. A server needs to be configured for the OCR, this has been done already on an Epi-Use Labs server, for a guide on the server see \url{www.github.com/tleyden/open-ocr}
 
 \section{Getting Started}
-Once the app has been installed the user simply need to click on the application named VizARD, this will bring the user into a launching screen shown in figure 1.\\
+Once the app has been installed the user simply need to click on the application named VizARD, this will bring the user into a launching screen shown in Figure 1.\\
 \begin{figure}[H]
 \centering
 	\includegraphics[width=50mm]{images/launch.png}
 	\caption{launching screen \label{overflow}}
 \end{figure}
 
-Once the app has finished launching the user will be greated by the landing screen.
+Once the app has finished launching the user will be greeted by the landing screen.
+\newpage
+
 %%-------------------------------------LANDING SCREEN ----------------------------------------
 \section{Landing Screen}
-Once the app has completed loading it will then bring you to a screen that looks like figure 2, this screen shows what the camera is looking at as well as having two buttons currently, these are the capture data circle (Figure 3) that should be familiar to users of snapchat, as well as the View Previous graphs button (figure 4).
+Once the app has completed loading it will then bring you to a screen that looks like Figure 2, this screen shows what the camera is looking at as well as having two buttons currently, these are the capture data circle (Figure 3) that should be familiar to users of snapchat, as well as an adjustable frame so that you can narrow down the data(Figure 4).
 
 \begin{figure}[H]
 \centering
@@ -124,47 +127,48 @@ Once the app has completed loading it will then bring you to a screen that looks
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=50mm]{images/graphRed.png}
-    \caption{View Graphs.}
+    \includegraphics[width=50mm]{images/frame.png}
+    \caption{Frame.}
   \end{minipage}
 \end{figure}
 
 
-
 %%----------------------------------ON CAPTURE CLICK-----------------------------------------
 \subsection{On Capture Circle click}
-When a user clicks the capture data circle (figure 3) it will chose the table that is being viewed as the target for the 3D graph that will be generated, it will also send the image to a server to allow for optical character recognition of the data to make the graph, while this is occuring we plan to have some loading model to be placed on the target while the user waits. Once it has generated the graph the app moves to the display screen.
+When a user clicks the capture data circle (Figure 3) it will choose the table that is being viewed as the target for the 3D graph that will be generated, it will also send the image to a server to allow for optical character recognition of the data to make the graph, while this is occuring the application will show a loading screen while the user waits. Once it has generated the graph the app moves to the display screen.
 
-%%----------------------------DISPLAY GRAPH CLICK------------------------------------------------
-\subsection{On View graphs click}
-When a user clicks the View Graphs button (figure 4) currently nothing will happen as this section has not been implemented but we plan on it taking the user to screen shots of previous graphs they have decided to save. 
-\newpage
+%--------------------------------THE FRAME---------------------------------------------------
+\subsection{Frame}
+The frame allows the user to select only the part of the picture they want to be used to generate the graph, this means that you are able to cut out unwanted text. The frame and be resized using two finger pinch and moved by using one finger.
 %%----------------------------DISPLAY SCREEN------------------------------------------------
 \section{Dispay Screen}
-Once the app has completed generating the graph it will then bring you to a display screen that looks like figure 5, this screen shows the newly generated graph that has been mapped onto the target two buttons currently, these are the share graph button (Figure 6), as well as the edit graphs button (figure 6). We plan on implementing a save graph button that will also be here and will take a screen shot of the graph and save it. 
+Once the app has completed generating the graph it will then bring you to a display screen that looks like Figure 5, this screen shows the newly generated graph that has been mapped onto the target, and two buttons, these are the edit graphs button (Figure 6), the back button (Figure 7).
 
 \begin{figure}[H]
 \centering
-	\includegraphics[width=8cm]{images/graph.png}
+	\includegraphics[width=5cm]{images/graph.png}
 	\caption{display screen \label{overflow}}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.2\textwidth}
     \includegraphics[width=50mm]{images/editRed.png}
     \caption{Edit button}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=50mm]{images/shareRed.png}
-    \caption{Share button}
+  \begin{minipage}[b]{0.2\textwidth}
+    \includegraphics[width=50mm]{images/back.png}
+    \caption{Back button}
   \end{minipage}
 \end{figure}
-\newpage
 %------------------------on edit click------------------------------------
 \subsection{On Edit Button click}
-When the edit button is clicked a screen containing a form is showen, this form will allow the user to edit data and the graph. 
+When the edit button is clicked a screen containing a form is shown, this form will allow the user to edit data and the graph. 
+
+%-----------------------on back clicked----------------------------------
+\subsection{Back button}
+When the back button is pressed the application goes back to the capture image screen and clears all data that has been stored during the run time of the application. It then allows for a new table to be captured.
 %-----------------------------form-----------------
 \subsection{Form}
 When the form is brought up from the edit button you see the following screen. 
@@ -173,11 +177,6 @@ When the form is brought up from the edit button you see the following screen.
     \includegraphics[width=85mm]{images/form.jpg}
     \caption{Edit form}
 \end{figure}
-The form contains a table that displays all the data that the OCR has read and generated the graph from, it also allows for the switching of axis, when the switch axis button is clicked, and you can cycle through graph type by pressing the "Cycle graph" button. 
-
-%------------------------on Share click------------------------------------
-
-\subsection{On Share Button Click}
-The share button has not been implemented but once it has when a user clicks it the app will take a screen capture of the graph and open up genral sharing option such as share to facebook or whatsapp.
+The form contains a table that displays all the data that the OCR has read. It also allows for the switching of axis, when the switch axis button is clicked. You can cycle through graph type by pressing the "Cycle graph" button. To edit values, simply tap on the corresponding cell.
 
 \end{document}
