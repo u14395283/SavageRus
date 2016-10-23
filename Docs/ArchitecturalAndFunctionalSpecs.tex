@@ -15,10 +15,7 @@
  
 %----------------------------------------------------------------------------------------
 %-	HEADING SECTIONS
-%----------------------------------------------------------------------------------------
-\begin{center}
-	\includegraphics[width=7cm]{../Images/SavageRus.png}
-\end{center}	
+%----------------------------------------------------------------------------------------	
 \vfill
 \textsc{\LARGE University of Pretoria}\\[1.5cm]
 \textsc{\Large COS 301 - Software Engineering}\\[0.5cm]
@@ -29,7 +26,7 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries VizARD Architectural and Functional Specification - Version 0.3}\\[0.4cm] % Title of your document
+{ \huge \bfseries VizARD Architectural and Functional Specification - Version 1}\\[0.4cm] % Title of your document
 {\large \today}
 \HRule \\[1.5cm]
  
@@ -56,8 +53,19 @@ Ruan \textsc{Klinkert}\\
 14022282\\
 
 \end{flushright}
-\end{minipage}\\[4cm]
+\end{minipage}\\[0.5cm]
 
+
+\centering
+	\includegraphics[width=60mm]{SavageRu.jpg}
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+\centering
+	\textsc{\LARGE Epi-Use Labs project}\\[0.5cm]
+	\textsc{\Large VizARD}\\[0.5cm]
+	\textsc{\Large  Architectural and Functional Specification Version 1}\\[0.5cm]
+	\includegraphics[width=\textwidth]{images/vizard.png}
  % Date, change the \today to a set date if you want to be precise
 
  
@@ -85,19 +93,17 @@ The system will allow a user to:
 \item Take a picture of a table of numerical data
 \item Use OCR (Optical Character Recognition) to read the data from the picture
 \item Generate an appropriate graph for the data
-\item View a 3D model of this graph through Augmented Reality
-\end{itemize}   . 
-\newline
-Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
+\item View a 3D model of this graph through Augmented Reality.
+\end{itemize} 
 
 \newpage
 \section{Software Architecture}
 \subsection{Architectural Scope}
-ViZARD is a partially online application, because a small amount of processing happens remotely. The local application will run entirely as a Unity3D application. After an image has been taken by the user, it is sent in a POST request to the OpenOCR API server for Tesseract to process. The results are returned and parsed into a C\# object where our beautifully engineered scripts handle the graph generation.
+ViZARD is a partially online application, since the OCR processing takes place on a remote server. After an image has been taken by the user, it is sent via a POST request to the OpenOCR API server for Tesseract to process. The results are returned and parsed into a C\# object where our scripts handle the graph generation.
 
 \subsection{Integration and Access Channel Requirements}
 \begin{itemize}
-\item The system accesses the OpenOCR server by each local deployment through a RESTful API which will require internet access.
+\item Each local deployment accesses the OpenOCR server through a RESTful API, which requires internet access.
 \item  Since the application is being developed entirely in Unity3D (save for the OCR), Unity selects the APIs to complete tasks such as file system access, camera access and network access.
 \item End users will be able to access the system through mobile applications made available for Android and iOS operating systems.
 \end{itemize}
@@ -112,11 +118,11 @@ ViZARD is a partially online application, because a small amount of processing h
 \begin{itemize}		
 	\item Data extraction from the images and graph generation should take a maximum of 10 seconds
 	\item The application has to be responsive, that is, the application should react to touch within a second so that no lag is apparent.
-	\item OCR data should be returned within 3 seconds of the image being sent to server, provided that internet speeds are greater than 2 mbps.	
+	\item OCR data should be returned within 5 seconds of the image being sent to server, provided that internet speeds are greater than 2 mbps.	
 \end{itemize}
 \subsubsection*{Reliability}	
 \begin{itemize}		
-	\item The camera resolution should not be below 5MP to ensure that accurate OCR analysis is achieved
+	\item The camera resolution should not be less than the screen resolution to ensure that accurate OCR analysis is achieved
 \end{itemize}
 
 \subsection{Architecture Constraints}
@@ -124,9 +130,9 @@ ViZARD is a partially online application, because a small amount of processing h
 	\item Android
 	\item iOS
 \end{itemize}
-The systems used must all be cross-platform to allow for the two different interfaces (Android and iOS). As such, the AR Engine, OCR Engine and 3D Library must be OS independent.
+The systems used must be compatible with both iOS and Android.
 \newline
-To allow for this, the VizARD application will be developed in Unity 3D as a largely C\# based program. Through Unity's built in tools we will be able to package to the two required platforms more easily. 
+To allow for this, the VizARD application will be developed in Unity 3D as a largely C\# based program. Through Unity's built in tools we will be able to build to the two required platforms more easily. 
 
 \subsection{Architectural Patterns or Styles}
 The system employs a derivation of MVC called MVP (Model View Presenter).
@@ -134,107 +140,120 @@ These MVP segments are as follows:
 \begin{itemize}
 	\item \textbf{Model -} this is the data access layer. In our case this is simply the device's file system API and the remote OCR server.
 	\item\textbf{View -} this is the layer that displays information to the user and reacts to user input. The Unity Scenes that we have developed will serve this function.
-	\item \textbf{Presenter -} the Presenter handles the background tasks such as sending and receiving data to and from the Model and View. It also handles other background tasks. In the case of VizARD, the Presenter consists mainly of the inner components of the Unity game engine.
+	\item \textbf{Presenter -} the Presenter handles the background tasks such as sending and receiving data to and from the Model and View. In the case of VizARD, the Presenter consists mainly of the inner components of the Unity game engine.
 	
-MVP separates the system into the above mentioned blocks in order to make them less dependent on one another and on most lifecycle-related events. Other advantages are discussed below.
 
-We have decided to use this architectural pattern due to its pluggability and maintainability. By separating the system into these basic pieces we make troubleshooting easier as well as making the problem solving simpler (one need only focus on one layer at a time).
+We have decided to use this architectural pattern due to its pluggability and maintainability. By separating the system into these components we make troubleshooting and problem solving simpler.
 \end{itemize}
 
 \subsection{Technologies}
-The application has 3 basic functions - 4 components:
+The application has 3 basic functions across 4 components:
 \begin{itemize}
 	\item Data Extraction from images - through OCR and user input using the Tesseract based OpenOCR server.
 	\item Graph Generation - by using Unity 3D.
-	\item Augmented Reality - we will use Vuforia AR SDK to project the 3D graph onto the image marker.
-	\item Interface - also built within Unity 3D and consists of Scripts and Scenes.	
+	\item Augmented Reality - through Vuforia AR SDK .
+	\item User Interface - also built within Unity 3D and consists of Scripts and Scenes.	
 \end{itemize}
 
 \newpage
 \section{Functional requirements and application design}
-
-\subsection{Service contracts/Use Cases}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__GenerateGraph__serviceContract.png}  \\
-		\caption{Services Contract : GenerateGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__DisplayGraph__serviceContract.png}  \\
-		\caption{Services Contract : DisplayGraph}
-	\end{figure}
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ViewAllPreviousGraphs__serviceContract.png}  \\
-		\caption{Services Contract : ViewAllPreviousGraphs}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ViewPreviousGraph__serviceContract.png}  \\
-		\caption{Services Contract : ViewPreviousGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__EditGraph__serviceContract.png}  \\
-		\caption{Services Contract : EditGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__SaveGraph__serviceContract.png}  \\
-		\caption{Services Contract : SaveGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__ShareGraph__serviceContract.png}  \\
-		\caption{Services Contract : ShareGraph}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__DetectGraphType__serviceContract.png}  \\
-		\caption{Services Contract : DetectGraphType}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/class__OCR__serviceContract.png}  \\
-		\caption{Services Contract : OCR}
-	\end{figure}
-\subsubsection{Global Scope}
+\subsection{Global Scope}
 \begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/global_scope.png}  \\
+		\includegraphics[width=\textwidth]{Images/globalScope.png}  \\
 		\caption{Use Case: Global Scope}
 	\end{figure}
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/globalscope2.png}  \\
+		\caption{Use Case: Global Scope continued}
+	\end{figure}
+\subsection{Service contracts/Use Cases}
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/createDataset.png}  \\
+		\caption{Services Contract : createDataset}
+	\end{figure}
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/createGraph.png}  \\
+		\caption{Services Contract : createGraph}
+	\end{figure}
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/editGraph.png}  \\
+		\caption{Services Contract : editGraph}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/setModel.png}  \\
+		\caption{Services Contract : setModel}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/setType.png}  \\
+		\caption{Services Contract : setType}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/uploadFile.png}  \\
+		\caption{Services Contract : uploadFile}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/uploadFileCo.png}  \\
+		\caption{Services Contract : uploadFile co-routine}
+	\end{figure}
+	
 \subsection{Required functionality}
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__GenerateGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : GenerateGraph}
+		\includegraphics[width=\textwidth]{Images/createDatasetUC.png}  \\
+		\caption{Required functionality : createDataset}
 	\end{figure}
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__DisplayGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : DisplayGraph}
+		\includegraphics[width=\textwidth]{Images/creategraphUC.png}  \\
+		\caption{Required functionality : creategraph}
 	\end{figure}
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ViewAllPreviousGraphs__functionalRequirements.png}  \\
-		\caption{Required functionality : ViewAllPreviousGraphs}
+		\includegraphics[width=\textwidth]{Images/editGraphUC.png}  \\
+		\caption{Required functionality : editGraph}
 	\end{figure}
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ViewPreviousGraph__functionalRequirements.png}  \\
-		\caption{Required functionality : ViewPreviousGraph}
+		\includegraphics[width=\textwidth]{Images/setModelUC.png}  \\
+		\caption{Required functionality : setModel}
 	\end{figure}	
 	
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__EditGraph}  \\
-		\caption{Required functionality : EditGraph}
+		\includegraphics[width=\textwidth]{Images/setTypeUC.png}  \\
+		\caption{Required functionality : setType}
 	\end{figure}
 	
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__SaveGraph}  \\
-		\caption{Required functionality : SaveGraph}
+		\includegraphics[width=\textwidth]{Images/uploadFileUC.png}  \\
+		\caption{Required functionality : uploadFile}
 	\end{figure}
 	
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{Images/uc__ShareGraph}  \\
-		\caption{Required functionality : ShareGraph}
+		\includegraphics[width=\textwidth]{Images/uploadFileCoUC.png}  \\
+		\caption{Required functionality : uploadFile co-routine}
 	\end{figure}
 
+\subsection{Activity Diagrams}
 
+\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/createGraph__act.png}  \\
+		\caption{Activity Diagram : createGraph}
+	\end{figure}
+
+\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/editGraphACT.png}  \\
+		\caption{Activity Diagram : editGraph}
+	\end{figure}
+	
+\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/setModelACT.png}  \\
+		\caption{Activity Diagram : setModel}
+	\end{figure}
+	
+\begin{figure}[H]
+		\includegraphics[width=\textwidth]{Images/uploadFileCoACT.png}  \\
+		\caption{Activity Diagram :  uploadFile co-routine}
+	\end{figure}
 %\subsection{Domain Model}
 
 %\subsection{Use of Reference Architectures and Frameworks}
