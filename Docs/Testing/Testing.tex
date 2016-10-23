@@ -5,6 +5,31 @@
 \usepackage{float}
 \graphicspath{ {images/} }
 
+\usepackage{listings}
+\usepackage{color}
+\usepackage{adjustbox}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=[Sharp]C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 \begin{document}
 
 \begin{titlepage}
@@ -75,166 +100,275 @@ Ruan \textsc{Klinkert}\\
 
 \section{Introduction}
 
-This is the main testing document for the vizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
+\subsection{Purpose}
+This is the main testing document for the VizARD Augmented Reality application being developed for EPI-USE Labs by The Savage Ru's.
 
 VizARD is a mobile application which will allow a user to take a picture of tabulated data and then view, automatically generated, 3D graphs of the data projected onto the document of which the image was taken.
 
-The document you are reading is structured in 5 sections - each representing a component of the system and an additional section for the integration testing.
-The components are:
+For the system we are developing, test drive development (TDD) is essential, mainly due to the uncertain aspects of new technologies being used in the system. By following a test driven cycle we can ensure that there is constant change and improvement upon the system. By incorporating unit-tests concurrently with the development cycle we can minimize time taken during the integration stage for fixing functional errors which are not related to the integration itself. TDD also allows us to almost always have at least one stable version of the system available - since all the integrated code has already been tested and meets its requirements.
+
+The document you are reading provides an overview of the testing process we follow. It explains the strategies we've followed and the results we received in so doing.
+
+\subsection{Scope}
+\subsubsection{Requirements to Test}
+We list the goals as well as some info on the type of testing for each requirement below.
 \begin{itemize}
-\item Display Graph (Augmented Reality)
-\item Create Graph (3D Modelling)
-\item Data Input (Optical Character Recognition)
-\item Interface
+\item Usability: this is tested mainly with user-acceptance tests as things such as the stability of the graph are not measurable empirically. \\ \\
+	Graphs should be:
+	\begin{itemize}
+		\item visible on the target table,
+		\item rotated towards the viewer,
+		\item scaled correctly,
+		\item stable and not shaking.
+	\end{itemize}
+\item Performance: here we have set empirical goals for performance which we are aimed at.
+	\begin{itemize}
+		\item Graph generation time should not exceed 5 seconds.
+		\item Application must respond to touch within 1 second of input.
+		\item OCR data should be returned in no more than 5 seconds from the picture being taken.
+	\end{itemize}
+\item Reliability: this is also easily measured with empirical data.
+	\begin{itemize}
+		\item Image resolution should be high enough for consistent OCR results. Specifically no smaller than 600px on the longest side.
+	\end{itemize}
 \end{itemize}
 
-In these sections the testing strategy is explained for each component and results of previous tests are displayed.
+Testing is done in the Unity Test Tools suite. This suite includes frameworks for Unit Testing through NUnit and a control panel from which one can run tests and receive results. This method of unit testing simplifies the process but has its limitations in our context since it does not cater to integration testing well. Partly due to the nature of the application in that it is run on Unity3D - which is not perfectly suited to running conventional applications but rather games. 
 
-\newpage
-\section{Vision}
-EPI-USE Labs (henceforth referred to as "the client") intends for the VizARD application to be used by a large variety of mobile device users across both Android and iOS platforms. VizARD helps to simplify the analysis of numerical data through visualization, in the form of automatically generated 3D graphs.
+Our strategy also suffers slightly in our inability to conduct proper stress testing - where the OCR server is concerned. Thus some tests may succeed under low traffic but fail under load. Furthermore our user acceptance tests are inevitably subjective, but in this regard the client will have the final say.
 
-Fundamentally, the system will allow a user to take a picture of a table of numerical data which he/she may need to interpret. The application will then use OCR (Optical Character Recognition) to read the data from the picture. It will then decide on an appropriate graph for the type of data and generate a graph for the data. After the graph is generated, it will project a 3D model of the graph onto the image (or, ideally, onto a live stream of the paper) for the user to view.
-
-Additionally, the system will allow users to send images (or screen captures) of generated graphs to other devices via popular social media channels.
-
-Typically usage will be as follows:
+To counteract for our testing limitations we are making certain assumptions with regards to the hardware the server is running on (we assume that the OCR makes optimal use of the hardware). We also assume that users are running the app on mid-range to high-end (with minimum 1gb RAM and a dual-core CPU) Android devices.
+\subsection{Test Environment}
 \begin{itemize}
-	\item The user (possibly a businessman) finds tabular data he/she would like to analyse more easily.
-	\item The user opens the app.
-	\item Once the app is open and loaded, the user takes a picture of the table he/she would like to analyse.
-	\item The user receives a notification that the graph has been generated and the generated graph is displayed on the screen (mapped onto the paper).
-	\item The user taps on the "Share" button and is presented with several options through which he/she can share the graph.
-	\item An option is selected and an image of the graph is sent to the other user.
+\item Hardware:
+	\begin{itemize}
+		\item PC running Windows 10 and an Intel chipset with an integrated 720p webcam.
+		\item Wileyfox Storm handset running Android 6.0.1.
+		\item LG G4 handset running Android 6.
+	\end{itemize}
+\item Network:
+	\begin{itemize}
+		\item Internet connection of no slower than 2 mbps.
+	\end{itemize}
+\item Programming Languages: 
+	\begin{itemize}
+		\item C\# (for tests and functions)
+		\item C++ (Unity3D is written in this)
+	\end{itemize}
+\item Testing Frameworks:
+	\begin{itemize}
+		\item  Unity Test Tools (including NUnit)
+	\end{itemize}
+\item Coding Environment:
+	\begin{itemize}
+		\item Mono Develop
+	\end{itemize}
+\item Operating Systems:
+	\begin{itemize}
+		\item Android OS (no older than Android 5.1)
+		\item Microsoft Windows (no older than Windows 7 SP1)
+		\item iOS
+	\end{itemize}
 \end{itemize}
 
-\newpage
-\section{Background}
-
-It is much simpler for us to recognize patterns and make quick analysis of data if it is presented to us in visual form. A simple example for the use of such an application would be a principal at a school who is presented with the Mathematics results of a particular grade for several quarters, such an application would make it very simple for him to quickly visualize the numeric data and see the trend.
-\newline
-\newline
-The problem at hand is that there is a lot of information to go around and so little time to process. In a society that demands us to make decisions quickly, it would be wise to have a tool that aids the decision making process by making the information easier to digest and that is what vizARD intends to do.
-\newline
-\newline
-Potential users could range from students, researchers, people in business, managers at stores and anyone else who would like to visualize data on the go.
-		
-%UNARINE RAMBANI
-\newpage
-%\section{Display Graph (Augmented Reality}
-
-%Ruan "Ru" Klinkert
-\section{Create Graph (3D Modelling)}
-
-The objective of the tests was to pass a variety of values to the graph generation classes, and test if the graph is successfully created.\\\\
-\textbf{Variables}
-%
+\subsection{Assumptions and Dependencies}
 \begin{itemize}
-	\item Values = Two dimensional array of floats representing all graph values
-	\item Categories = string array with names of each category (x-axis)
-	\item Series = string array with names of each series (z-axis)
-	\item Categories\_title = title for categories
-	\item Series\_title = title for series
-	\item Series\_Count = number of series
-	\item Category\_Count = number of categories
+	\item Constant, stable, internet connection.
+	\item Internet speeds of no less than 2 mbps.
+	\item Server hardware powerful enough to handle traffic without unintended delays.
+	\item Cellphone camera with resolution exceeding that of the devices screen.
+	\item The application is \textbf{dependent} on the remote OCR server and cannot function if a connection to it cannot be established.
 \end{itemize}
-%
-\textbf{Pre-checks}\\
+\section{Test Items}
+
+\begin{itemize}
+\subsection{Display Graph (Augmented Reality}
+\item ModelInstantiator.cs
+\item Graph.cs
+\end{itemize}
+
+\subsection{Data Gathering (Optical Character Recognition)}
+\begin{itemize}
+\item StringManipulation.cs
+\item ImageManipulation.cs
+\item UDTEventHandler.cs
+\end{itemize}
+\section{Functional Features to be Tested}
+\subsection{Taking a picture}
+Image capture is the first fundamental function which VizARD must have. Testing for this feature is simple. The app is prompted to take a picture, the picture is printed to a location on the host machine, and finally the picture is inspected to confirm its accuracy.
+
+\subsection{OCR and Data Capture}
+Data analysis is done remotely by OpenOCR and Tesseract. Sending, receiving and interpreting data is done natively in the app. Specifically, the features concerned here are:
+\begin{itemize}
+	\item encoding the image for the server,
+	\item sending a request,
+	\item receiving a response,
+	\item sanitizing results,
+	\item and interpreting the results.
+\end{itemize}
+
+\subsection{Generating a 3D model from captured data}
+Graphs are generated from the global dataset object which stores the captured data. There are several types of graphs which may be generated, and are tested, listed below:
+\begin{itemize}
+	\item Bar graph
+	\item Line graph
+	\item Pie chart
+	\item Scatter plot
+\end{itemize}
+
+The objective of the tests was to pass a variety of values to the graph generation classes, and test if the graph is successfully created.\\
+
+\subsection{Viewing the 3D graph in Augmented Reality}
+Viewing is tested manually by generating a 3D Model with mock-data and using a pre-defined AR target for it to project to. Starting with a well-lit, and clearly defined target, and then descending in quality until tracking is no longer possible. Since Vuforia is used for the AR mapping, testing and modification is limited. Simply put, our findings show that targets which are difficult to track are not easily parsed by the OCR and, as such, are not a significant concern in its current configuration.
+
+\section{Test Cases}
+\subsection{Graph Generation Test Cases}
+\subsubsection{Bar, Point and Line Graphs}
+\begin{itemize}
+	\item Objective: The purpose of this test is to determine whether the graph generation occurs for all correct input values.
+\end{itemize}
+
+\subsubsection{Pie chart}
+\begin{itemize}
+	\item Objective: The purpose of this test is to determine whether pie chart models are generated successfully. \\\
+\end{itemize} 
+
+\textbf{Input Variables: }
+		\begin{itemize}
+			\item Values = Two dimensional array of floats representing all graph values
+			\item Categories = string array with names of each category (x-axis)
+			\item Series = string array with names of each series (z-axis)
+			\item Categories\_title = title for categories
+			\item Series\_title = title for series
+			\item Series\_Count = number of series
+			\item Category\_Count = number of categories
+		\end{itemize}
+\textbf{Pre-checks:}\\
 If a pre-check fails, the graph will be adjusted but will still be drawn.
-%
-\begin{itemize}
-	\item The Length of Categories must be null or equal to Category\_Count \\
+
+	\begin{itemize}
+		\item The Length of Categories must be null or equal to Category\_Count \\
 		\textbf{Action:} The labels will not be drawn.
-	\item The Length of Series must be null or equal to Series\_Count \\
+		\item The Length of Series must be null or equal to Series\_Count \\
 		\textbf{Action:} The labels will not be drawn.
-	\item Categories\_title may be null\\
+		\item Categories\_title may be null\\
 		\textbf{Action:} irrelevant. 
-	\item Series\_title may be null\\
+		\item Series\_title may be null\\
 		\textbf{Action:} irrelevant. 
-	\item Height and Width of Values must be equal to Series\_Count and Category\_Count respectively\\
+		\item Height and Width of Values must be equal to Series\_Count and Category\_Count respectively\\
 		\textbf{Action:} Series\_Count and Category\_Count will be adjusted to the height and width of Values.
-\end{itemize}
-%
-\subsubsection{Tests}
-\textbf{Bar, Point and Line Graph}\\
-Testing criteria:\\
-The last object to be drawn is the value label on the back-rightmost bar/point, if it is drawn, the test will be considered successful.\\\\
-%
-\textbf{Pie chart}\\
-Testing criteria:\\
-In order for the test to be considered successful, the final piece must stop at exactly 360 degrees.
-%
+	\end{itemize}
+	
+\subsection{Optical Character Recognition Test Cases}
+\subsubsection{String Sanitization}
 \begin{itemize}
-	\item Categories\_title is not drawn.
-	\item Series\_title is not drawn. 
-	\item Series labels are not drawn.
+	\item Objective: The purpose of this test is to determine whether the OCR sanitization function successfully checks for incorrect characters.
+	\item Input: several images of different tables.
+	\item Outcome: > 70\% accuracy on input data.
 \end{itemize}
-%
-\textbf{Tested by:} Ruan Klinkert
-%
+
+\section{Item Pass/Fail Criteria}
+\begin{itemize}
+	\item Graph Generation
+	\begin{itemize}
+		\item Pass: correct 3D graph is generated.
+		\item Fail: model has noticeable discrepancies.
+	\end{itemize}
+	
+	\item Optical Character Recognition
+	\begin{itemize}
+		\item Pass: returned string contains no non-digit characters.
+		\item Fail: there are non-digit characters in the returned string.
+	\end{itemize}
+\end{itemize}
+
+\newpage
+\section{Test Results}
+\subsection{Overview Test Results}
+During unit testing the majority of our tests passed. In all cases OCR reacted as expected and graphs were generated when they were expected. We used NUnit for unit testing but we were not able to automate integration testing due to the visual nature of the application and the uniqueness of the technology stack we are using. NUnit assisted greatly in executing unit tests and returning concise results. It allowed us to run a large number of tests efficiently and easily with repeatable circumstances.
+
+\subsection{Graph Generation Test Cases}
+\textbf{Test Data}
 \begin{table}[ht]
 \centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\label{my-label}
+\begin{tabular}{|l|l|l|l|l|l|}
 \hline
-Values                                                                                         & Categories                                                                                     & Series                                                          & Categories\_title & Series\_title & Series\_Count & Category\_Count & Result \\ \hline
-{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “Categories”      & “Series”      & 1             & 4               & PASS   \\ \hline
-{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “Categories”      & “”            & 1             & 4               & PASS   \\ \hline
-{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “Series”      & 1             & 4               & PASS   \\ \hline
-{[}1,2,3,4{]}                                                                                  & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 1             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & {[}{]}                                                          & “Categories”      & “”            & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “”                & “Series”      & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “Categories”      & “Series”      & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & \begin{tabular}[c]{@{}l@{}}{[}“1”, “2”, “3”, “4”{]},\\   {[}“5”, “6”, “7”, “8”{]}\end{tabular} & {[}{]}                                                          & “”                & “Series”      & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & \begin{tabular}[c]{@{}l@{}}{[}“1”{]},\\   {[}“2{]}\end{tabular} & “Categories”      & “”            & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1{]},\\   {[}2{]},\\   {[}3{]}\end{tabular}                      & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 3             & 1               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}-1,-2,\\   -3,-4{]},\\   {[}-5,-6,\\   -7,-8{]}\end{tabular}     & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 2             & 4               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}0.1, 0.2, 0.3, 0.4{]},\\   {[}0.5, 0.6, 0.7, 0.8{]}\end{tabular} & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 2             & 4               & PASS   \\ \hline
-{[}{]}                                                                                         & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 0             & 0               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 0             & 0               & PASS   \\ \hline
-\begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\   {[}5,6,7,8{]}\end{tabular}                       & {[}{]}                                                                                         & {[}{]}                                                          & “”                & “”            & 8             & 10              & PASS   \\ \hline
-\end{tabular}}
+Case & Values                                                                                           & Categories                                                                             & Series                                                         & Categories\_Count & Series\_Count \\ \hline
+1    & {[}1,2,3,4{]}                                                                                    & {[}{]}                                                                                 & {[}{]}                                                         & 1                 & 4             \\ \hline
+2    & \begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]}.\\ {[}5,6,7,8{]}\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}{[}"1","2","3","4"{]},\\ {[}"5","6","7","8"{]}\end{tabular} & {[}{]}                                                         & 2                 & 4             \\ \hline
+3    & \begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]}.\\ {[}5,6,7,8{]}\end{tabular}                           & {[}{]}                                                                                 & \begin{tabular}[c]{@{}l@{}}{[}"1"{]},\\ {[}"2"{]}\end{tabular} & 2                 & 4             \\ \hline
+4    & \begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]}.\\ {[}5,6,7,8{]}\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}{[}"1","2","3","4"{]},\\ {[}"5","6","7","8"{]}\end{tabular} & \begin{tabular}[c]{@{}l@{}}{[}"1"{]},\\ {[}"2"{]}\end{tabular} & 2                 & 4             \\ \hline
+5    & \begin{tabular}[c]{@{}l@{}}{[}-1,-2{]},\\ {[}-3,-4{]},\\ {[}-5,-6{]}.\\ {[}-7,-8{]}\end{tabular} & {[}{]}                                                                                 & {[}{]}                                                         & 4                 & 2             \\ \hline
+6    & \begin{tabular}[c]{@{}l@{}}{[}0.1,0.2{]},\\ {[}0.3,0.4{]}\end{tabular}                           & {[}{]}                                                                                 & {[}{]}                                                         & 2                 & 2             \\ \hline
+7    & {[}{]}                                                                                           & {[}{]}                                                                                 & {[}{]}                                                         & 0                 & 0             \\ \hline
+8    & \begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\ {[}5,6,7,8{]}\end{tabular}                           & {[}{]}                                                                                 & {[}{]}                                                         & 0                 & 0             \\ \hline
+9    & \begin{tabular}[c]{@{}l@{}}{[}1,2,3,4{]},\\ {[}5,6,7,8{]}\end{tabular}                           & {[}{]}                                                                                 & {[}{]}                                                         & 100               & 100           \\ \hline
+\end{tabular}
 \end{table}
+\newpage
+\subsubsection{Test Case 1}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn when no titles are given.
+\end{itemize}
+\subsubsection{Test Case 2}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if titles for each category is given.
+\end{itemize}
+\subsubsection{Test Case 3}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if titles for each series is given.
+\end{itemize}
+\subsubsection{Test Case 4}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn when titles are given for both categories and series.
+\end{itemize}
+\subsubsection{Test Case 5}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if negative values were given as the data.
+\end{itemize}
+\subsubsection{Test Case 6}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if float values were given as the data.
+\end{itemize}
+\subsubsection{Test Case 7}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if no data was given.
+\end{itemize}
+\subsubsection{Test Case 8}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if the series and category counts were less than the size of the dataset.
+\end{itemize}
+\subsubsection{Test Case 9}
+\begin{itemize}
+	\item Test passed
+	\item This test case was meant to test if the graph would be drawn if the series and category counts were greater than the size of the dataset.
+\end{itemize}
 
-\section{Data Gathering (Optical Character Recognition)}
-	\subsection{Strategy} The OCR component of the VizARD system runs as a remote server accessed through a RESTful API. As such testing takes place in 2 stages. The first stage is accuracy - several example table with different fonts are run through the system and mistakes are measured. Ideally we are aiming for an accuracy of above 95%. The second stage is load-testing. The server will have to handle many concurrent requests and delays due to traffic would be detremental to adoption of VizARD. Load-testing is done by sending 100 POST requests to the server within the space of a second. It is imperative that all those requests have received a response within 3 seconds of the start of the test. Changes will be made to the system until results are acceptable.
-	
-	\subsection{Results}
-		\subsubsection{Accuracy}
-		As is evident by the comparisons below, we have not yet come near our goal for accuracy.\\
-		
-		\textbf {Table 1}\\
-		\includegraphics[width=7cm]{Images/Tables/table.jpg}\\
-		
-		\textbf{Result 1}\\
-		Region Older People Frail Elderly
+\subsection{OCR Test Cases}	
+\begin{table}[h]
+\centering
 
-		North West 112,118 5,249\\
-		South East 105,653 3,577\\
-		Yorkshire \& Humber 104,241 1,917\\
-		North East 103.835 6.332\\
-		West Midlands 99,917 4.508\\
-		East Midlands 77.439 2.073\\
-		London 74,903 5.718\\
-		Eastern 71.115 2.837\\
-		Sou\textbf{l}h West 65,545 3,633\\
-		TOTAL 814. 756 35,844\\
-		
-		\textbf {Table 2}\\
-		\includegraphics[width=7cm]{Images/Tables/8Table9.png}\\
-		
-		\textbf{Result 2}\\
-		mm" with Mznzuzrs Pay Hmmzys\\
-		 v 7 s 7\\
-		mm 7 4 3 s
-		Sllnzwlsnrs 7 4 5 5\\
-		51mm...“ calls 2 2 1 4\\
-		
-		
-		As evidenced by the sample tests above, we have not yet reached our acceptable error threshold for this system. Development will continue to improve accuracy and testing will continue concurrently.
-\section{User Interface}
-
-\section{Full System (Integration)}
-
+\label{my-label}
+	\begin{adjustbox}{width=1\textwidth}
+	\begin{tabular}{|l|l|l|l|}
+	\hline
+		\textbf{Input}         & \textbf{Returned}       & \textbf{Expected}       & \textbf{Result} \\ \hline
+		"BOo\%EIlAHGbTJSMQRZCc" & "800811446677544912200" & "800811446677544912200" & Pass            \\ \hline
+		"-Bo01"                 & "-8001"                 & "-8001"                 & Pass            \\ \hline
+		"Bo01-"                 & "8001-"                 & "8001-"                 & Pass            \\ \hline
+		"Bo-01"                 & "8001"                  & "8001"                  & Pass           \\ \hline 
+	\end{tabular}
+	\end{adjustbox}
+	\caption{Helpers.sanitizeString Unit Test Results}		
+\end{table}
 
 \end{document}
